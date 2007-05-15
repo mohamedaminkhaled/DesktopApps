@@ -67,12 +67,14 @@ public class DashboardController {
 		String strYear = strFullDate.substring(0, 4);
 		int intYear = Integer.parseInt(strYear);
 		
+		@SuppressWarnings("deprecation")
 		GregorianCalendar gc = new GregorianCalendar(intYear, date.getMonth(), 0);
     	date = gc.getTime();
     	String gcTimeMore = dateFormate.format(date);
     	gcTimeMore = gcTimeMore.replace("/","-");
     	
-    	GregorianCalendar gc2 = new GregorianCalendar(intYear, date.getMonth()+2, 0);
+    	@SuppressWarnings("deprecation")
+		GregorianCalendar gc2 = new GregorianCalendar(intYear, date.getMonth()+2, 0);
     	date = gc2.getTime();
     	String gcTimeLessOrEqual = dateFormate.format(date);
     	gcTimeLessOrEqual = gcTimeLessOrEqual.replace("/","-");
@@ -109,8 +111,20 @@ public class DashboardController {
     }
 
     @FXML
-    void getSimilarCompanies(MouseEvent event) {
-
+    void getSimilarCompanies(MouseEvent event) throws IOException, SQLException {
+    	
+    	Stage stage = new Stage();
+    	
+    	FXMLLoader loaderViewMedicine = new FXMLLoader(getClass().getResource("/UserPages/ViewMedicine.fxml"));
+    	Parent root = loaderViewMedicine.load();
+    	
+    	SearchMedicineController searchMedicineController = loaderViewMedicine.getController();
+    	searchMedicineController.getCompanies();
+    	
+    	Scene scene=new Scene(root,839,543);
+		stage.setScene(scene);
+		stage.initStyle(StageStyle.UTILITY);
+		stage.show();
     }
 
     @FXML

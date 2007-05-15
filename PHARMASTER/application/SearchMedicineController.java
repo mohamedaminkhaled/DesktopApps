@@ -5,9 +5,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -43,6 +40,52 @@ public class SearchMedicineController {
 		state=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 				ResultSet.CONCUR_READ_ONLY);
 		rs=state.executeQuery(strSelect);
+		
+		while(rs.next()) {
+			FXMLLoader loaderMedicineCard = new FXMLLoader(getClass().getResource("/UserPages/MedicineCard.fxml"));
+	    	Parent root = loaderMedicineCard.load();
+
+	    	MedicineCardController medicineCardController = loaderMedicineCard.getController();
+			
+			medicineCardController.setMedicineCard(rs.getString("id"));
+			flowPaneContent.getChildren().addAll(root);
+		} 
+    }
+    
+    void getCompanies() throws SQLException, IOException {
+    	
+    	Statement state;
+		ResultSet rs;
+		
+    	String strSelectSimilarCompanies = "SELECT DISTINCT `company` FROM `medicines`";
+		
+		Connection conn=DBinfo.connDB();
+		state=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+				ResultSet.CONCUR_READ_ONLY);
+		rs=state.executeQuery(strSelectSimilarCompanies);
+		
+		while(rs.next()) {
+			FXMLLoader loaderCompanyCard = new FXMLLoader(getClass().getResource("/UserPages/CompanyCards.fxml"));
+	    	Parent root = loaderCompanyCard.load();
+
+	    	CompanyCardController companyCardController = loaderCompanyCard.getController();
+			
+	    	companyCardController.setCompanyCard(rs.getString("company"));
+			flowPaneContent.getChildren().addAll(root);
+		} 
+    }
+    
+    void getCompanyMedicines(String companyName) throws SQLException, IOException {
+    	
+    	Statement state;
+		ResultSet rs;
+		
+		String strSelectOutOfStock = "SELECT * FROM `medicines` WHERE `company` = '"+companyName+"'";
+		
+		Connection conn=DBinfo.connDB();
+		state=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+				ResultSet.CONCUR_READ_ONLY);
+		rs=state.executeQuery(strSelectOutOfStock);
 		
 		while(rs.next()) {
 			FXMLLoader loaderMedicineCard = new FXMLLoader(getClass().getResource("/UserPages/MedicineCard.fxml"));

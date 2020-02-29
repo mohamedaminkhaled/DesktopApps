@@ -58,7 +58,7 @@ public class MainController {
     private FontAwesomeIconView icon_close;
 
     @FXML
-    private BorderPane borderPaneContent;
+    BorderPane borderPaneContent;
 
     @FXML
     private Label totalMedicine;
@@ -142,7 +142,7 @@ public class MainController {
     	loadPage("/AdminPages/SysInfo");
     }
     
-    private void loadPage(String ui) {
+    void loadPage(String ui) {
     	Parent root = null;
     	try {
 			root=FXMLLoader.load(getClass().getResource(ui+".fxml"));

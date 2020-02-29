@@ -4,6 +4,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
@@ -124,11 +126,21 @@
                <top>
                   <Pane prefHeight="129.0" prefWidth="873.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label layoutX="40.0" layoutY="31.0" prefHeight="68.0" prefWidth="654.0" text="Welcom, Dear Administrator!" textFill="#3c22c9">
+                        <Label layoutX="40.0" layoutY="31.0" prefHeight="68.0" prefWidth="193.0" text="Welcom," textFill="#3c22c9">
                            <font>
                               <Font name="System Bold Italic" size="46.0" />
                            </font>
                         </Label>
+                        <Label fx:id="adminName" layoutX="233.0" layoutY="31.0" prefHeight="68.0" prefWidth="398.0" textFill="#3c22c9">
+                           <font>
+                              <Font name="System Bold Italic" size="46.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="adminImage" fitHeight="128.0" fitWidth="177.0" layoutX="744.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/avatar2.jpg" />
+                           </image>
+                        </ImageView>
                      </children>
                   </Pane>
                </top>

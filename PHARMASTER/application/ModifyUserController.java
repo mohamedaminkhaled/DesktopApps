@@ -1,10 +1,10 @@
 package application;
 
 import java.io.File;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -14,20 +14,19 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-public class RegisterUserController {
+public class ModifyUserController {
 
     @FXML
     private ImageView userImage;
 
     @FXML
-    private Button btnChoosePicture;
+    private Button btnChoosImage;
 
     @FXML
-    private TextField tfFisrtName;
+    private TextField tfFirstName;
 
     @FXML
     private TextField tfLastName;
@@ -36,88 +35,78 @@ public class RegisterUserController {
     private TextField tfUserName;
 
     @FXML
-    private Button dtnCancel;
+    private Button btnCancelModifyUser;
 
     @FXML
-    private Button btnConfirm;
+    private Button btnModify;
 
     @FXML
-    private PasswordField tfPasswoard;
+    private PasswordField tfPassword;
 
     @FXML
     private PasswordField tfConfirmPasswoard;
 
     @FXML
-    private HBox radioGroup;
-
-    @FXML
-    private RadioButton radioMale;
+    private RadioButton genderMale;
 
     @FXML
     private ToggleGroup gender;
 
     @FXML
-    private RadioButton radioFemale;
-    
-    @FXML
-    private HBox radioGroup1;
+    private RadioButton genderFemale;
 
     @FXML
     private RadioButton radioAdmin;
 
     @FXML
-    private ToggleGroup jobTitle;
+    private ToggleGroup gender1;
 
     @FXML
-    private RadioButton radioClient;
+    private RadioButton radioPharmacist;
     
-    //FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminPages/RegisterUser.fxml"));
-    //FXMLLoader dashboardLoader = new FXMLLoader(getClass().getResource("AdminPages/Dashboard.fxml"));
-	
-	//Parent root=FXMLLoader.load(getClass().getResource("welcom.fxml"));
-	
-	//MainController adminPage = loader.getController();
-	
+
     @FXML
-    void cancelRegisterUser(MouseEvent event) throws IOException {
-    	tfFisrtName.setText("");
+    void cancelModifyUser(MouseEvent event) {
+    	tfFirstName.setText("");
     	tfLastName.setText("");
     	tfUserName.setText("");
-    	tfPasswoard.setText("");
+    	tfPassword.setText("");
     	tfConfirmPasswoard.setText("");
-    	radioMale.setSelected(false);
-    	radioFemale.setSelected(false);
+    	genderMale.setSelected(false);
+    	genderFemale.setSelected(false);
     	radioAdmin.setSelected(false);
-    	radioClient.setSelected(false);
+    	radioPharmacist.setSelected(false);
     	userImage.setImage(new Image("/resources/avatar2.jpg"));
     }
 
     @FXML
-    void confirmRegisterUser(MouseEvent event) throws SQLException {
-    	
-		Connection conn=DBinfo.connDB();
-		String sql="INSERT INTO `employees`(`firstname`, `lastname`, "
-    			+ "`gender`, `jobtitle`, `username`, `passwoard`, `image`) "
-				+ "VALUES (?,?,?,?,?,?,?)";
+    void confirmModifyUser(MouseEvent event) throws SQLException {
+    	Connection conn=DBinfo.connDB();
+		
+		String strUpdate ="UPDATE `employees`" 
+				+ "SET `firstname`=?, `lastname`=?, `gender`=?,"  
+				+ "`jobtitle`=?, `username`=?, `username`=?, `image`=? "
+				+ " WHERE username =? AND passwoard =?";  
+		
 		PreparedStatement ps;
 		
-		ps = conn.prepareStatement(sql);
+		ps = conn.prepareStatement(strUpdate);
 
-		ps.setString(1, tfFisrtName.getText());
+		ps.setString(1, tfFirstName.getText());
 		ps.setString(2, tfLastName.getText());
-		ps.setString(3, radioMale.isSelected() ? "male" : "femaile");
+		ps.setString(3, genderMale.isSelected() ? "male" : "femaile");
 		ps.setString(4, radioAdmin.isSelected() ? "admin" : "user");
 		ps.setString(5, tfUserName.getText());
-		ps.setString(6, tfPasswoard.getText());
+		ps.setString(6, tfPassword.getText());
 		ps.setString(7, userImage.getImage().getUrl());
+		ps.setString(8, tfUserName.getText());
+		ps.setString(9, tfPassword.getText());
 		ps.executeUpdate();
-		System.out.println("Row inserted!");
-    	
+		System.out.println("1 Row updated!");
     }
 
     @FXML
     void openImageChooser(MouseEvent event) {
-    	
     	FileChooser fileChooser = new FileChooser();
 		fileChooser.getExtensionFilters().addAll(new
 			        FileChooser.ExtensionFilter("jpg", "*.jpg"),
@@ -134,13 +123,5 @@ public class RegisterUserController {
 			 userImage.setImage(image);
 		 }
     }
-    
-    public void errException(SQLException e) {
-		System.out.println("Error: "+e.getMessage());
-		System.out.println("code: "+e.getErrorCode());
-		System.out.println("state: "+e.getSQLState());
-		System.out.println("message: "+e.getLocalizedMessage());
-		
-	}
 
 }

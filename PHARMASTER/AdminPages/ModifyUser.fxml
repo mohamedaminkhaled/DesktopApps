@@ -16,11 +16,11 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="828.0" style="-fx-background-color: #C0C0C0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="828.0" style="-fx-background-color: #C0C0C0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ModifyUserController">
    <left>
       <VBox alignment="CENTER" prefHeight="549.0" prefWidth="222.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="152.0" fitWidth="172.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="userImage" fitHeight="152.0" fitWidth="172.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/avatar2.jpg" />
                </image></ImageView>
@@ -29,7 +29,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="149.0" style="-fx-background-color: DarkSlateGray;" text="Choose picture" textFill="#e4dfee">
+            <Button fx:id="btnChoosImage" mnemonicParsing="false" onMouseClicked="#openImageChooser" prefHeight="47.0" prefWidth="149.0" style="-fx-background-color: DarkSlateGray;" text="Choose picture" textFill="#e4dfee">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -48,7 +48,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <TextField layoutX="253.0" layoutY="51.0" prefHeight="41.0" prefWidth="317.0" style="-fx-background-color: #C0C0C0;">
+            <TextField fx:id="tfFirstName" layoutX="253.0" layoutY="51.0" prefHeight="41.0" prefWidth="317.0" style="-fx-background-color: #C0C0C0;">
                <font>
                   <Font size="18.0" />
                </font>
@@ -64,7 +64,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <TextField layoutX="253.0" layoutY="107.0" prefHeight="41.0" prefWidth="317.0" style="-fx-background-color: #C0C0C0;">
+            <TextField fx:id="tfLastName" layoutX="253.0" layoutY="107.0" prefHeight="41.0" prefWidth="317.0" style="-fx-background-color: #C0C0C0;">
                <font>
                   <Font size="18.0" />
                </font>
@@ -85,67 +85,67 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="17.0" layoutY="233.0" prefHeight="42.0" prefWidth="135.0" text="Username" textFill="#0a0114">
+            <Label layoutX="14.0" layoutY="281.0" prefHeight="42.0" prefWidth="135.0" text="Username" textFill="#0a0114">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <TextField layoutX="253.0" layoutY="219.0" prefHeight="41.0" prefWidth="317.0" style="-fx-background-color: #C0C0C0;">
+            <TextField fx:id="tfUserName" layoutX="253.0" layoutY="264.0" prefHeight="41.0" prefWidth="317.0" style="-fx-background-color: #C0C0C0;">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <Line endX="227.0" layoutX="353.0" layoutY="260.0" startX="-100.0" />
-            <Label alignment="CENTER_RIGHT" layoutX="218.0" layoutY="236.0" prefHeight="32.0" prefWidth="28.0" text=":">
+            <Line endX="227.0" layoutX="353.0" layoutY="305.0" startX="-100.0" />
+            <Label alignment="CENTER_RIGHT" layoutX="218.0" layoutY="281.0" prefHeight="32.0" prefWidth="28.0" text=":">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="17.0" layoutY="289.0" prefHeight="42.0" prefWidth="135.0" text="Passwoard" textFill="#0a0114">
+            <Label layoutX="14.0" layoutY="337.0" prefHeight="42.0" prefWidth="135.0" text="Passwoard" textFill="#0a0114">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Line endX="226.0" layoutX="353.0" layoutY="316.0" startX="-100.0" />
-            <Label alignment="CENTER_RIGHT" layoutX="218.0" layoutY="292.0" prefHeight="32.0" prefWidth="28.0" text=":">
+            <Line endX="226.0" layoutX="353.0" layoutY="361.0" startX="-100.0" />
+            <Label alignment="CENTER_RIGHT" layoutX="218.0" layoutY="337.0" prefHeight="32.0" prefWidth="28.0" text=":">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="20.0" layoutY="345.0" prefHeight="42.0" prefWidth="201.0" text="Confirm passwoard" textFill="#0a0114">
+            <Label layoutX="17.0" layoutY="393.0" prefHeight="42.0" prefWidth="201.0" text="Confirm passwoard" textFill="#0a0114">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Line endX="223.0" layoutX="356.0" layoutY="372.0" startX="-100.0" />
-            <Label alignment="CENTER_RIGHT" layoutX="221.0" layoutY="348.0" prefHeight="32.0" prefWidth="28.0" text=":">
+            <Line endX="223.0" layoutX="356.0" layoutY="417.0" startX="-100.0" />
+            <Label alignment="CENTER_RIGHT" layoutX="221.0" layoutY="393.0" prefHeight="32.0" prefWidth="28.0" text=":">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Button layoutX="256.0" layoutY="453.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="99.0" style="-fx-background-color: Chocolate;" text="Cancel" textFill="WHITE">
+            <Button fx:id="btnCancelModifyUser" layoutX="256.0" layoutY="490.0" mnemonicParsing="false" onMouseClicked="#cancelModifyUser" prefHeight="37.0" prefWidth="99.0" style="-fx-background-color: Chocolate;" text="Cancel" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="380.0" layoutY="453.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="99.0" style="-fx-background-color: SteelBlue;" text="Modify" textFill="WHITE">
+            <Button fx:id="btnModify" layoutX="380.0" layoutY="490.0" mnemonicParsing="false" onMouseClicked="#confirmModifyUser" prefHeight="37.0" prefWidth="99.0" style="-fx-background-color: SteelBlue;" text="Modify" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <PasswordField layoutX="253.0" layoutY="270.0" prefHeight="44.0" prefWidth="325.0" style="-fx-background-color: #C0C0C0;">
+            <PasswordField fx:id="tfPassword" layoutX="253.0" layoutY="315.0" prefHeight="44.0" prefWidth="325.0" style="-fx-background-color: #C0C0C0;">
                <font>
                   <Font size="18.0" />
                </font>
             </PasswordField>
-            <PasswordField layoutX="253.0" layoutY="326.0" prefHeight="44.0" prefWidth="325.0" style="-fx-background-color: #C0C0C0;">
+            <PasswordField fx:id="tfConfirmPasswoard" layoutX="253.0" layoutY="371.0" prefHeight="44.0" prefWidth="325.0" style="-fx-background-color: #C0C0C0;">
                <font>
                   <Font size="18.0" />
                </font>
             </PasswordField>
             <HBox layoutX="265.0" layoutY="174.0" prefHeight="48.0" prefWidth="230.0">
                <children>
-                  <RadioButton mnemonicParsing="false" prefHeight="40.0" prefWidth="98.0" text="Male">
+                  <RadioButton fx:id="genderMale" mnemonicParsing="false" prefHeight="40.0" prefWidth="98.0" text="Male">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -153,13 +153,40 @@
                         <ToggleGroup fx:id="gender" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" prefHeight="40.0" prefWidth="98.0" text="Female" toggleGroup="$gender">
+                  <RadioButton fx:id="genderFemale" mnemonicParsing="false" prefHeight="40.0" prefWidth="98.0" text="Female" toggleGroup="$gender">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </RadioButton>
                </children>
             </HBox>
+            <Label layoutX="14.0" layoutY="233.0" prefHeight="42.0" prefWidth="135.0" text="job title" textFill="#0a0114">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <HBox layoutX="265.0" layoutY="230.0" prefHeight="48.0" prefWidth="230.0">
+               <children>
+                  <RadioButton fx:id="radioAdmin" mnemonicParsing="false" prefHeight="40.0" prefWidth="98.0" text="Admin">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="gender1" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="radioPharmacist" mnemonicParsing="false" prefHeight="40.0" prefWidth="128.0" text="Pharmacist" toggleGroup="$gender1">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </RadioButton>
+               </children>
+            </HBox>
+            <Label alignment="CENTER_RIGHT" layoutX="218.0" layoutY="238.0" prefHeight="32.0" prefWidth="28.0" text=":">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </center>

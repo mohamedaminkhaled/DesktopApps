@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -74,6 +75,12 @@ public class MainController {
 
     @FXML
     private Label similarCompany;
+    
+    @FXML
+    Label adminName;
+
+    @FXML
+    private ImageView adminImage;
     
 
     @FXML
@@ -178,7 +185,7 @@ public class MainController {
 			
 			 if(str.equals(strUser)) {
 					
-				//client_name.setText(new String(rs.getString("name")));
+				    //client_name.setText(new String(rs.getString("name")));
 					
 					Stage stage = new Stage();
 					Parent root=FXMLLoader.load(getClass().getResource("/fxml/Client.fxml"));
@@ -193,6 +200,10 @@ public class MainController {
 					
 					stage.show();
 				}else if(str.equals(strAdmin)){
+					
+//					String adminname = rs.getString("firstname");
+//					adminName.setText(adminname);
+					
 					Stage stage = new Stage();
 					Parent root=FXMLLoader.load(getClass().getResource("/fxml/Admin.fxml"));
 					Scene scene = new Scene(root,1120,700);

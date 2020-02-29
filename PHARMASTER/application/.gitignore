@@ -4,3 +4,5 @@
 /MainController.class
 /ReadData.class
 /RegisterUserController.class
+/ModifyUserController.class
+/AddMedicineController.class

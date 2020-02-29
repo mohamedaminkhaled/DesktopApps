@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="828.0" style="-fx-background-color: #C0C0C0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.RegisterUserController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="563.0" prefWidth="828.0" style="-fx-background-color: #C0C0C0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.RegisterUserController">
    <left>
       <VBox alignment="CENTER" prefHeight="549.0" prefWidth="222.0" BorderPane.alignment="CENTER">
          <children>
@@ -85,65 +85,65 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="17.0" layoutY="233.0" prefHeight="42.0" prefWidth="135.0" text="Username" textFill="#0a0114">
+            <Label layoutX="14.0" layoutY="301.0" prefHeight="42.0" prefWidth="135.0" text="Username" textFill="#0a0114">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="tfUserName" layoutX="253.0" layoutY="219.0" prefHeight="41.0" prefWidth="317.0" style="-fx-background-color: #C0C0C0;">
+            <TextField fx:id="tfUserName" layoutX="250.0" layoutY="287.0" prefHeight="41.0" prefWidth="317.0" style="-fx-background-color: #C0C0C0;">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <Line endX="227.0" layoutX="353.0" layoutY="260.0" startX="-100.0" />
-            <Label alignment="CENTER_RIGHT" layoutX="218.0" layoutY="236.0" prefHeight="32.0" prefWidth="28.0" text=":">
+            <Line endX="227.0" layoutX="350.0" layoutY="328.0" startX="-100.0" />
+            <Label alignment="CENTER_RIGHT" layoutX="215.0" layoutY="304.0" prefHeight="32.0" prefWidth="28.0" text=":">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="17.0" layoutY="289.0" prefHeight="42.0" prefWidth="135.0" text="Passwoard" textFill="#0a0114">
+            <Label layoutX="14.0" layoutY="357.0" prefHeight="42.0" prefWidth="135.0" text="Passwoard" textFill="#0a0114">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Line endX="226.0" layoutX="353.0" layoutY="316.0" startX="-100.0" />
-            <Label alignment="CENTER_RIGHT" layoutX="218.0" layoutY="292.0" prefHeight="32.0" prefWidth="28.0" text=":">
+            <Line endX="226.0" layoutX="350.0" layoutY="384.0" startX="-100.0" />
+            <Label alignment="CENTER_RIGHT" layoutX="215.0" layoutY="360.0" prefHeight="32.0" prefWidth="28.0" text=":">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="20.0" layoutY="345.0" prefHeight="42.0" prefWidth="201.0" text="Confirm passwoard" textFill="#0a0114">
+            <Label layoutX="17.0" layoutY="413.0" prefHeight="42.0" prefWidth="201.0" text="Confirm passwoard" textFill="#0a0114">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Line endX="223.0" layoutX="356.0" layoutY="372.0" startX="-100.0" />
-            <Label alignment="CENTER_RIGHT" layoutX="221.0" layoutY="348.0" prefHeight="32.0" prefWidth="28.0" text=":">
+            <Line endX="223.0" layoutX="353.0" layoutY="440.0" startX="-100.0" />
+            <Label alignment="CENTER_RIGHT" layoutX="218.0" layoutY="416.0" prefHeight="32.0" prefWidth="28.0" text=":">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Button fx:id="dtnCancel" layoutX="256.0" layoutY="453.0" mnemonicParsing="false" onMouseClicked="#cancelRegisterUser" prefHeight="37.0" prefWidth="99.0" style="-fx-background-color: Chocolate;" text="Cancel" textFill="WHITE">
+            <Button fx:id="dtnCancel" layoutX="243.0" layoutY="484.0" mnemonicParsing="false" onMouseClicked="#cancelRegisterUser" prefHeight="37.0" prefWidth="99.0" style="-fx-background-color: Chocolate;" text="Cancel" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnConfirm" layoutX="380.0" layoutY="453.0" mnemonicParsing="false" onMouseClicked="#confirmRegisterUser" prefHeight="37.0" prefWidth="99.0" style="-fx-background-color: SteelBlue;" text="Confirm" textFill="WHITE">
+            <Button fx:id="btnConfirm" layoutX="380.0" layoutY="484.0" mnemonicParsing="false" onMouseClicked="#confirmRegisterUser" prefHeight="37.0" prefWidth="99.0" style="-fx-background-color: SteelBlue;" text="Confirm" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <PasswordField fx:id="tfPasswoard" layoutX="253.0" layoutY="270.0" prefHeight="44.0" prefWidth="325.0" style="-fx-background-color: #C0C0C0;">
+            <PasswordField fx:id="tfPasswoard" layoutX="250.0" layoutY="338.0" prefHeight="44.0" prefWidth="325.0" style="-fx-background-color: #C0C0C0;">
                <font>
                   <Font size="18.0" />
                </font>
             </PasswordField>
-            <PasswordField fx:id="tfConfirmPasswoard" layoutX="253.0" layoutY="326.0" prefHeight="44.0" prefWidth="325.0" style="-fx-background-color: #C0C0C0;">
+            <PasswordField fx:id="tfConfirmPasswoard" layoutX="250.0" layoutY="394.0" prefHeight="44.0" prefWidth="325.0" style="-fx-background-color: #C0C0C0;">
                <font>
                   <Font size="18.0" />
                </font>
             </PasswordField>
-            <HBox fx:id="radioGroup" layoutX="265.0" layoutY="174.0" prefHeight="48.0" prefWidth="230.0">
+            <HBox fx:id="radioGroup" layoutX="265.0" layoutY="180.0" prefHeight="48.0" prefWidth="230.0">
                <children>
                   <RadioButton fx:id="radioMale" mnemonicParsing="false" prefHeight="40.0" prefWidth="98.0" text="Male">
                      <font>
@@ -160,6 +160,38 @@
                   </RadioButton>
                </children>
             </HBox>
+            <Label layoutX="17.0" layoutY="239.0" prefHeight="42.0" prefWidth="135.0" textFill="#0a0114">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <HBox fx:id="radioGroup1" layoutX="265.0" layoutY="236.0" prefHeight="48.0" prefWidth="230.0">
+               <children>
+                  <RadioButton fx:id="radioAdmin" mnemonicParsing="false" prefHeight="40.0" prefWidth="98.0" text="Admin">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="jobTitle" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="radioClient" mnemonicParsing="false" prefHeight="40.0" prefWidth="126.0" text="Pharmacist" toggleGroup="$jobTitle">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </RadioButton>
+               </children>
+            </HBox>
+            <Label layoutX="17.0" layoutY="239.0" prefHeight="42.0" prefWidth="135.0" text="job title" textFill="#0a0114">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER_RIGHT" layoutX="218.0" layoutY="236.0" prefHeight="32.0" prefWidth="28.0" text=":">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </center>

@@ -1,0 +1,26 @@
+
+#icon_close, #icon_fullscreen, #icon_iconize:hover{
+	-fx-cursor:hand;
+}
+
+.button:hover{
+	-fx-cursor:hand;
+}
+
+#datepickerManufact .text-field {
+    -fx-control-inner-background:  #C0C0C0 ;
+}
+
+#datepickerExpire .text-field {
+    -fx-control-inner-background:  #C0C0C0 ;
+}
+
+#tfSearch{
+	-fx-border-radius: 10px;
+	-fx-background-color: rgb(212,212,212);
+}
+
+#btnSearch{
+	-fx-border-radius: 10px;
+	-fx-background-color: #2E8B57;
+}

@@ -1,12 +1,10 @@
 package application;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.sql.SQLException;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -15,12 +13,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-public class UserPagesController {
+public class ClientController {
 	
 	double x, y;
-	
+
     @FXML
-    private BorderPane clientPage;
+    private BorderPane client_page;
+    
+    @FXML
+    private BorderPane borderPaneContent;
 
     @FXML
     private FontAwesomeIconView icon_iconize;
@@ -56,16 +57,22 @@ public class UserPagesController {
     private Label similarCompany;
 
     @FXML
-    void dragged(MouseEvent event) {
+    void close(MouseEvent event) {
     	Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-    	stage.setX(event.getScreenX() -x);
-    	stage.setY(event.getScreenY() -y);
+    	stage.close();
     }
-
+    
     @FXML
     void pressed(MouseEvent event) {
     	x = event.getScreenX();
     	y = event.getScreenY();
+    }
+
+    @FXML
+    void dragged(MouseEvent event) {
+    	Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	stage.setX(event.getScreenX() -x);
+    	stage.setY(event.getScreenY() -y);
     }
     
     @FXML
@@ -84,50 +91,38 @@ public class UserPagesController {
     	Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
     	stage.setIconified(true);
     }
-    
-    @FXML
-    void close(MouseEvent event) {
-    	Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-    	stage.close();
-    }
-    
-//    @FXML
-//    void dashboard(MouseEvent event) {
-//    	loadUI("/UserPages/dashboard");
-//    }
-    
-//    @FXML
-//    void addMedicine(MouseEvent event) {
-//    	loadUI("/UserPages/dashboard");
-//    }
-    
-//    @FXML
-//    void viewMedicine(MouseEvent event) {
-//    	loadUI("/UserPages/ViewMedicine");
-//    }
-//    
-//    @FXML
-//    void sysInfo(MouseEvent event) {
-//    	loadUI("/UserPages/SysInfo");
-//    }
-//    
-//    @FXML
-//    void profile(MouseEvent event) {
-//    	loadUI("/UserPages/Profile");
-//    }
-//    
-//    @FXML
-//    void logout(MouseEvent event) {
-//    	loadUI("/UserPages/Logout");
-//    }
 
     @FXML
-    void exitApp(MouseEvent event) {
-    	Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-    	stage.close();
+    void getAddMedicine(MouseEvent event) {
+    	loadPage("/UserPages/AddMedicine");
     }
-    
-    private void loadUI(String ui) {
+
+    @FXML
+    void getDashboard(MouseEvent event) {
+    	loadPage("/UserPages/Dashboard");
+    }
+
+    @FXML
+    void getLogout(MouseEvent event) {
+
+    }
+
+    @FXML
+    void getMyProfile(MouseEvent event) {
+
+    }
+
+    @FXML
+    void getSysInfo(MouseEvent event) {
+
+    }
+
+    @FXML
+    void getViewMedicine(MouseEvent event) {
+    	loadPage("/UserPages/ViewMedicine");
+    }
+
+    private void loadPage(String ui) {
     	Parent root = null;
     	try {
 			root=FXMLLoader.load(getClass().getResource(ui+".fxml"));
@@ -135,7 +130,15 @@ public class UserPagesController {
     	}catch(Exception e) {
 			e.printStackTrace();
 		}
-    	borderPaneEdit.setCenter(root);
+    	borderPaneContent.setCenter(root);
     }
-}
+    
+    public void errException(SQLException e) {
+		System.out.println("Error: "+e.getMessage());
+		System.out.println("code: "+e.getErrorCode());
+		System.out.println("state: "+e.getSQLState());
+		System.out.println("message: "+e.getLocalizedMessage());
+		
+	}
 
+}

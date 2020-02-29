@@ -7,9 +7,9 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <Label prefHeight="77.0" prefWidth="249.0" text="Modify User" BorderPane.alignment="CENTER">
+      <Label prefHeight="87.0" prefWidth="365.0" text="System information" BorderPane.alignment="CENTER">
          <font>
-            <Font size="30.0" />
+            <Font size="40.0" />
          </font>
       </Label>
    </center>

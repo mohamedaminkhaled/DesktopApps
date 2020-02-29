@@ -8,15 +8,15 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="page_1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#dragged" onMouseReleased="#pressed" prefHeight="508.0" prefWidth="866.0" style="-fx-background-color: #C0C0C0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MyController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="508.0" prefWidth="866.0" style="-fx-background-color: #C0C0C0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <BorderPane fx:id="borderPaneEdit" prefHeight="700.0" prefWidth="1120.0" BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="700.0" prefWidth="1120.0" BorderPane.alignment="CENTER">
          <center>
             <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <top>
                   <Pane prefHeight="90.0" prefWidth="866.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label layoutX="27.0" prefHeight="41.0" prefWidth="654.0" text="Welcom, Dear Administrator!" textFill="#3c22c9">
+                        <Label layoutX="27.0" prefHeight="41.0" prefWidth="654.0" text="Welcom, Dear Client!" textFill="#3c22c9">
                            <font>
                               <Font name="System Bold Italic" size="46.0" />
                            </font>
@@ -29,7 +29,7 @@
                      <children>
                         <Pane prefHeight="153.0" prefWidth="256.0" style="-fx-background-color: #2F4F4F;">
                            <children>
-                              <Label fx:id="totalMedicine" layoutX="42.0" layoutY="8.0" prefHeight="32.0" prefWidth="45.0" text="0" textFill="#e3eef2">
+                              <Label layoutX="42.0" layoutY="8.0" prefHeight="32.0" prefWidth="45.0" text="0" textFill="#e3eef2">
                                  <font>
                                     <Font size="30.0" />
                                  </font>
@@ -48,7 +48,7 @@
                         </Pane>
                         <Pane prefHeight="153.0" prefWidth="256.0" style="-fx-background-color: #483D8B;">
                            <children>
-                              <Label fx:id="expiaryThisMonth" layoutX="42.0" layoutY="8.0" prefHeight="32.0" prefWidth="45.0" text="0" textFill="#e3eef2">
+                              <Label layoutX="42.0" layoutY="8.0" prefHeight="32.0" prefWidth="45.0" text="0" textFill="#e3eef2">
                                  <font>
                                     <Font size="30.0" />
                                  </font>
@@ -67,7 +67,7 @@
                         </Pane>
                         <Pane prefHeight="153.0" prefWidth="256.0" style="-fx-background-color: #FF4500;">
                            <children>
-                              <Label fx:id="outOfStock" layoutX="42.0" layoutY="8.0" prefHeight="32.0" prefWidth="45.0" text="0" textFill="#e3eef2">
+                              <Label layoutX="42.0" layoutY="8.0" prefHeight="32.0" prefWidth="45.0" text="0" textFill="#e3eef2">
                                  <font>
                                     <Font size="30.0" />
                                  </font>
@@ -86,7 +86,7 @@
                         </Pane>
                         <Pane prefHeight="153.0" prefWidth="256.0" style="-fx-background-color: #4169E1;">
                            <children>
-                              <Label fx:id="totalSales" layoutX="42.0" layoutY="8.0" prefHeight="32.0" prefWidth="45.0" text="0" textFill="#e3eef2">
+                              <Label layoutX="42.0" layoutY="8.0" prefHeight="32.0" prefWidth="45.0" text="0" textFill="#e3eef2">
                                  <font>
                                     <Font size="30.0" />
                                  </font>
@@ -105,7 +105,7 @@
                         </Pane>
                         <Pane prefHeight="153.0" prefWidth="256.0" style="-fx-background-color: DarkCyan;">
                            <children>
-                              <Label fx:id="similarCompany" layoutX="42.0" layoutY="8.0" prefHeight="32.0" prefWidth="45.0" text="0" textFill="#e3eef2">
+                              <Label layoutX="42.0" layoutY="8.0" prefHeight="32.0" prefWidth="45.0" text="0" textFill="#e3eef2">
                                  <font>
                                     <Font size="30.0" />
                                  </font>

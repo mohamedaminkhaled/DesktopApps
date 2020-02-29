@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="page_1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#dragged" onMouseReleased="#pressed" prefHeight="750.0" prefWidth="1100.0" style="-fx-background-color: #C0C0C0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MyController">
+<BorderPane fx:id="client_page" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#dragged" onMousePressed="#pressed" prefHeight="750.0" prefWidth="1100.0" style="-fx-background-color: #C0C0C0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ClientController">
    <top>
       <HBox alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="1100.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
          <children>
@@ -22,13 +22,13 @@
       </HBox>
    </top>
    <center>
-      <BorderPane fx:id="borderPaneEdit" prefHeight="700.0" prefWidth="1120.0" BorderPane.alignment="CENTER">
+      <BorderPane fx:id="borderPaneContent" prefHeight="700.0" prefWidth="1120.0" BorderPane.alignment="CENTER">
          <top>
             <HBox prefHeight="78.0" prefWidth="1100.0" style="-fx-background-color: #2F4F4F;" BorderPane.alignment="CENTER">
                <children>
                   <Pane prefHeight="78.0" prefWidth="1102.0" style="-fx-background-color: #2F4F4F;">
                      <children>
-                        <Label alignment="CENTER" layoutX="916.0" layoutY="13.0" prefHeight="52.0" prefWidth="170.0" text="Admin" textAlignment="CENTER" textFill="#e8e0e0">
+                        <Label alignment="CENTER" layoutX="898.0" layoutY="13.0" prefHeight="52.0" prefWidth="170.0" text="Pharmacist" textAlignment="CENTER" textFill="#e8e0e0">
                            <font>
                               <Font name="System Bold Italic" size="26.0" />
                            </font>
@@ -49,7 +49,7 @@
                   <HBox alignment="CENTER" prefHeight="28.0" prefWidth="252.0" style="-fx-background-color: #000000;">
                      <children>
                         <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="30" />
-                        <Button mnemonicParsing="false" onMouseClicked="#dashboard" prefHeight="45.0" prefWidth="170.0" style="-fx-background-color: #000000;" text="Dashboard" textFill="#fff8f8">
+                        <Button mnemonicParsing="false" onMouseClicked="#getDashboard" prefHeight="45.0" prefWidth="170.0" style="-fx-background-color: #000000;" text="Dashboard" textFill="#fff8f8">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -59,7 +59,7 @@
                   <HBox alignment="CENTER" prefHeight="28.0" prefWidth="252.0" style="-fx-background-color: #000000;">
                      <children>
                         <FontAwesomeIconView fill="WHITE" glyphName="USER" size="30" />
-                        <Button mnemonicParsing="false" onMouseClicked="#registerUser" prefHeight="45.0" prefWidth="170.0" style="-fx-background-color: #000000;" text="Regester User" textFill="#fff8f8">
+                        <Button fx:id="addMedicine" mnemonicParsing="false" onMouseClicked="#getAddMedicine" prefHeight="45.0" prefWidth="170.0" style="-fx-background-color: #000000;" text="Add Medicine" textFill="#fff8f8">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -69,7 +69,7 @@
                   <HBox alignment="CENTER" prefHeight="28.0" prefWidth="252.0" style="-fx-background-color: #000000;">
                      <children>
                         <FontAwesomeIconView fill="WHITE" glyphName="EDIT" size="30" />
-                        <Button mnemonicParsing="false" onMouseClicked="#getModifyUser" prefHeight="45.0" prefWidth="170.0" style="-fx-background-color: #000000;" text="Modify User" textFill="#fff8f8">
+                        <Button mnemonicParsing="false" onMouseClicked="#getViewMedicine" prefHeight="45.0" prefWidth="170.0" style="-fx-background-color: #000000;" text="View Medicine" textFill="#fff8f8">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -79,7 +79,7 @@
                   <HBox alignment="CENTER" prefHeight="28.0" prefWidth="252.0" style="-fx-background-color: #000000;">
                      <children>
                         <FontAwesomeIconView fill="WHITE" glyphName="CARD" size="30" />
-                        <Button mnemonicParsing="false" onMouseClicked="#getProfile" prefHeight="45.0" prefWidth="170.0" style="-fx-background-color: #000000;" text="My Profile" textFill="#fff8f8">
+                        <Button mnemonicParsing="false" onMouseClicked="#getMyProfile" prefHeight="45.0" prefWidth="170.0" style="-fx-background-color: #000000;" text="My Profile" textFill="#fff8f8">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -109,7 +109,7 @@
                   <HBox alignment="CENTER" prefHeight="28.0" prefWidth="252.0" style="-fx-background-color: #000000;">
                      <children>
                         <FontAwesomeIconView fill="#fc0808" glyphName="CLOSE" size="30" />
-                        <Button mnemonicParsing="false" onMouseClicked="#exitApp" prefHeight="45.0" prefWidth="170.0" style="-fx-background-color: #000000;" text="Exit App" textFill="#fff8f8">
+                        <Button mnemonicParsing="false" onMouseClicked="#close" prefHeight="45.0" prefWidth="170.0" style="-fx-background-color: #000000;" text="Exit App" textFill="#fff8f8">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -124,7 +124,7 @@
                <top>
                   <Pane prefHeight="129.0" prefWidth="873.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label layoutX="40.0" layoutY="31.0" prefHeight="68.0" prefWidth="654.0" text="Welcom, Dear Administrator!" textFill="#3c22c9">
+                        <Label layoutX="40.0" layoutY="31.0" prefHeight="68.0" prefWidth="595.0" text="Welcom, Dear Client!" textFill="#3c22c9">
                            <font>
                               <Font name="System Bold Italic" size="46.0" />
                            </font>

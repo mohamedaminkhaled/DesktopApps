@@ -6,3 +6,10 @@
 /RegisterUserController.class
 /ModifyUserController.class
 /AddMedicineController.class
+/SearchMedicineController.class
+/MedicineCardController.class
+/MedicineDetailsController.class
+/AddStockController.class
+/DshboardController.class
+/DashboardController.class
+/AdminController.class

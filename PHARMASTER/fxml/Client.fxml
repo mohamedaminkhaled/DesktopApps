@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="client_page" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#dragged" onMousePressed="#pressed" prefHeight="750.0" prefWidth="1100.0" style="-fx-background-color: #C0C0C0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ClientController">
+<BorderPane fx:id="client_page" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#dragged" onMousePressed="#pressed" prefHeight="750.0" prefWidth="1180.0" style="-fx-background-color: #C0C0C0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ClientController">
    <top>
       <HBox alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="1100.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
          <children>
@@ -49,7 +49,7 @@
                   <HBox alignment="CENTER" prefHeight="28.0" prefWidth="252.0" style="-fx-background-color: #000000;">
                      <children>
                         <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="30" />
-                        <Button mnemonicParsing="false" onMouseClicked="#getDashboard" prefHeight="45.0" prefWidth="170.0" style="-fx-background-color: #000000;" text="Dashboard" textFill="#fff8f8">
+                        <Button mnemonicParsing="false" onMouseClicked="#setDashboard" prefHeight="45.0" prefWidth="170.0" style="-fx-background-color: #000000;" text="Dashboard" textFill="#fff8f8">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -124,7 +124,12 @@
                <top>
                   <Pane prefHeight="129.0" prefWidth="873.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label layoutX="40.0" layoutY="31.0" prefHeight="68.0" prefWidth="595.0" text="Welcom, Dear Client!" textFill="#3c22c9">
+                        <Label layoutX="40.0" layoutY="31.0" prefHeight="68.0" prefWidth="195.0" text="Welcom," textFill="#3c22c9">
+                           <font>
+                              <Font name="System Bold Italic" size="46.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="clientName" layoutX="235.0" layoutY="31.0" prefHeight="68.0" prefWidth="392.0" textFill="#3c22c9">
                            <font>
                               <Font name="System Bold Italic" size="46.0" />
                            </font>

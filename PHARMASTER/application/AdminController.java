@@ -1,28 +1,24 @@
 package application;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-public class ClientController {
+public class AdminController {
 	
 	double x, y;
 
     @FXML
-    private BorderPane client_page;
-    
-    @FXML
-    private BorderPane borderPaneContent;
+    private BorderPane adminPage;
 
     @FXML
     private FontAwesomeIconView icon_iconize;
@@ -34,13 +30,13 @@ public class ClientController {
     private FontAwesomeIconView icon_close;
 
     @FXML
-    private BorderPane borderPaneEdit;
+    private BorderPane borderPaneContent;
 
     @FXML
-    private Button addMedicine;
+    private Label adminName;
 
     @FXML
-    private Label clientName;
+    private ImageView adminImage;
 
     @FXML
     private Label totalMedicine;
@@ -68,7 +64,7 @@ public class ClientController {
     	x = event.getScreenX();
     	y = event.getScreenY();
     }
-
+    
     @FXML
     void dragged(MouseEvent event) {
     	Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -92,10 +88,16 @@ public class ClientController {
     	Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
     	stage.setIconified(true);
     }
-
+    
     @FXML
-    void getAddMedicine(MouseEvent event) {
-    	loadPage("/UserPages/AddMedicine");
+    void setDashboard() throws IOException {
+    	FXMLLoader loaderDashboard = new FXMLLoader(getClass().getResource("/fxml/Dashboard.fxml"));
+    	Parent root = loaderDashboard.load();
+    	
+    	DashboardController dashboardController = loaderDashboard.getController();
+    	dashboardController.setWelcomeMessage("Welcom Dear Admin, "+adminName.getText());
+    	
+    	borderPaneContent.setCenter(root);
     }
 
     @FXML
@@ -104,40 +106,30 @@ public class ClientController {
     }
 
     @FXML
+    void getModifyUser(MouseEvent event) {
+    	loadPage("/AdminPages/ModifyUser");
+    }
+
+    @FXML
     void getMyProfile(MouseEvent event) {
 
     }
 
     @FXML
-    void getSysInfo(MouseEvent event) {
-
+    void getRegisterUser(MouseEvent event) {
+    	loadPage("/AdminPages/RegisterUser");
     }
 
     @FXML
-    void getViewMedicine(MouseEvent event) throws SQLException, IOException {
-    	
-    	FXMLLoader loaderViewMedicine = new FXMLLoader(getClass().getResource("/UserPages/ViewMedicine.fxml"));
-    	Parent root = loaderViewMedicine.load();
-    	
-    	SearchMedicineController searchMedicineController = loaderViewMedicine.getController();
-    	searchMedicineController.getMedicines();
-    	
-    	borderPaneContent.setCenter(root);
-    	
+    void getSysInfo(MouseEvent event) {
+    	loadPage("/AdminPages/SysInfo");
     }
     
-    @FXML
-    void setDashboard() throws IOException {
-    	FXMLLoader loaderDashboard = new FXMLLoader(getClass().getResource("/fxml/Dashboard.fxml"));
-    	Parent root = loaderDashboard.load();
-    	
-    	DashboardController dashboardController = loaderDashboard.getController();
-    	dashboardController.setWelcomeMessage("Welcom, "+clientName.getText());
-    	
-    	borderPaneContent.setCenter(root);
+    void setAdminName(String str) {
+    	adminName.setText(str);
     }
-
-    private void loadPage(String ui) {
+    
+    void loadPage(String ui) {
     	Parent root = null;
     	try {
 			root=FXMLLoader.load(getClass().getResource(ui+".fxml"));
@@ -146,18 +138,6 @@ public class ClientController {
 			e.printStackTrace();
 		}
     	borderPaneContent.setCenter(root);
-    }
-    
-    public void errException(SQLException e) {
-		System.out.println("Error: "+e.getMessage());
-		System.out.println("code: "+e.getErrorCode());
-		System.out.println("state: "+e.getSQLState());
-		System.out.println("message: "+e.getLocalizedMessage());
-		
-	}
-    
-    void setClientName(String str) {
-    	clientName.setText(str);
     }
 
 }

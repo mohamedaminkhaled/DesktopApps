@@ -45,44 +45,6 @@ public class MainController {
     @FXML
     private Button btn_submit;
     
-    
-    @FXML
-    private BorderPane adminPage;
-
-    @FXML
-    private FontAwesomeIconView icon_iconize;
-
-    @FXML
-    private FontAwesomeIconView icon_fullscreen;
-
-    @FXML
-    private FontAwesomeIconView icon_close;
-
-    @FXML
-    BorderPane borderPaneContent;
-
-    @FXML
-    private Label totalMedicine;
-
-    @FXML
-    private Label expiaryThisMonth;
-
-    @FXML
-    private Label outOfStock;
-
-    @FXML
-    private Label totalSales;
-
-    @FXML
-    private Label similarCompany;
-    
-    @FXML
-    Label adminName;
-
-    @FXML
-    private ImageView adminImage;
-    
-
     @FXML
     void close(MouseEvent event) {
     	Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -90,76 +52,10 @@ public class MainController {
     }
     
     @FXML
-    void pressed(MouseEvent event) {
-    	x = event.getScreenX();
-    	y = event.getScreenY();
+    void register(MouseEvent event) {
+
     }
     
-    @FXML
-    void dragged(MouseEvent event) {
-    	Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-    	stage.setX(event.getScreenX() -x);
-    	stage.setY(event.getScreenY() -y);
-    }
-    
-    @FXML
-    void max(MouseEvent event) {
-    	Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-    	stage.setFullScreenExitHint("");
-    	if(!stage.isFullScreen()) {
-    		stage.setFullScreen(true);
-    	}else {
-    		stage.setFullScreen(false);
-    	}
-    }
-
-    @FXML
-    void min(MouseEvent event) {
-    	Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-    	stage.setIconified(true);
-    }
-    
-    @FXML
-    void getDashboard(MouseEvent event) {
-    	loadPage("/AdminPages/Dashboard");
-    }
-
-    @FXML
-    void getLogout(MouseEvent event) {
-
-    }
-
-    @FXML
-    void getModifyUser(MouseEvent event) {
-    	loadPage("/AdminPages/ModifyUser");
-    }
-
-    @FXML
-    void getMyProfile(MouseEvent event) {
-
-    }
-
-    @FXML
-    void getRegisterUser(MouseEvent event) {
-    	loadPage("/AdminPages/RegisterUser");
-    }
-
-    @FXML
-    void getSysInfo(MouseEvent event) {
-    	loadPage("/AdminPages/SysInfo");
-    }
-    
-    void loadPage(String ui) {
-    	Parent root = null;
-    	try {
-			root=FXMLLoader.load(getClass().getResource(ui+".fxml"));
-			
-    	}catch(Exception e) {
-			e.printStackTrace();
-		}
-    	borderPaneContent.setCenter(root);
-    }
-
     @FXML
     void login(MouseEvent event) throws IOException {
     	Connection conn;
@@ -183,13 +79,20 @@ public class MainController {
 			if(str.equals(strUser));
 			System.out.println(str);
 			
+			String name = rs.getString("firstname");
+			
 			 if(str.equals(strUser)) {
 					
-				    //client_name.setText(new String(rs.getString("name")));
+				 	Stage stage = new Stage();
 					
-					Stage stage = new Stage();
-					Parent root=FXMLLoader.load(getClass().getResource("/fxml/Client.fxml"));
-					Scene scene = new Scene(root,1120,700);
+					FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Client.fxml"));
+			    	Parent root = loader.load();
+			    	
+			    	ClientController clientController = loader.getController();
+			    	clientController.setClientName(name);
+			    	clientController.setDashboard();
+			    	
+					Scene scene = new Scene(root,1180,750);					
 					scene.getStylesheets().add(getClass().getResource("/styles/main.css").toExternalForm());
 					stage.setResizable(true);
 					stage.setScene(scene);
@@ -197,16 +100,19 @@ public class MainController {
 					
 					Stage oldStage = (Stage)((Node)event.getSource()).getScene().getWindow();
 					oldStage.close();
-					
 					stage.show();
 				}else if(str.equals(strAdmin)){
-					
-//					String adminname = rs.getString("firstname");
-//					adminName.setText(adminname);
-					
+										
 					Stage stage = new Stage();
-					Parent root=FXMLLoader.load(getClass().getResource("/fxml/Admin.fxml"));
-					Scene scene = new Scene(root,1120,700);
+					
+					FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Admin.fxml"));
+			    	Parent root = loader.load();
+			    	
+			    	AdminController adminController = loader.getController();
+			    	adminController.setAdminName(name);
+			    	adminController.setDashboard();
+					
+					Scene scene = new Scene(root,1180,750);
 					scene.getStylesheets().add(getClass().getResource("/styles/main.css").toExternalForm());
 					stage.setResizable(true);
 					stage.setScene(scene);
@@ -223,11 +129,6 @@ public class MainController {
 		} catch (SQLException e) {
 			errException(e);
 		}
-    }
-
-    @FXML
-    void register(MouseEvent event) {
-
     }
     
     public void errException(SQLException e) {

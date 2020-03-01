@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="508.0" prefWidth="866.0" style="-fx-background-color: #C0C0C0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DashboardController">
+   <center>
+      <BorderPane prefHeight="700.0" prefWidth="1120.0" BorderPane.alignment="CENTER">
+         <center>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <top>
+                  <Pane prefHeight="72.0" prefWidth="866.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label fx:id="welcomMessage" layoutX="27.0" prefHeight="68.0" prefWidth="820.0" textFill="#180c5b">
+                           <font>
+                              <Font name="System Bold Italic" size="41.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </top>
+               <center>
+                  <FlowPane hgap="20.0" prefHeight="377.0" prefWidth="872.0" vgap="20.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Pane prefHeight="153.0" prefWidth="256.0" style="-fx-background-color: #2F4F4F;">
+                           <children>
+                              <Label fx:id="totalMedicine" layoutX="42.0" layoutY="8.0" prefHeight="45.0" prefWidth="148.0" text="0" textFill="#e3eef2">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="39.0" layoutY="47.0" prefHeight="45.0" prefWidth="208.0" text="Total Medicine" textFill="#d7e3eb">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="btnTotalMedicine" layoutX="39.0" layoutY="130.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: #008B8B;" text="More" textFill="#f8eeee">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="153.0" prefWidth="256.0" style="-fx-background-color: #483D8B;">
+                           <children>
+                              <Label fx:id="expiaryThisMonth" layoutX="42.0" layoutY="8.0" prefHeight="45.0" prefWidth="154.0" text="0" textFill="#e3eef2">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="39.0" layoutY="47.0" prefHeight="45.0" prefWidth="208.0" text="Expiary this month" textFill="#d7e3eb">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="btnExpiaryThisMonth" layoutX="39.0" layoutY="129.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: BlueViolet;" text="More" textFill="#f8eeee">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="153.0" prefWidth="256.0" style="-fx-background-color: #FF4500;">
+                           <children>
+                              <Label fx:id="outOfStock" layoutX="42.0" layoutY="8.0" prefHeight="45.0" prefWidth="169.0" text="0" textFill="#e3eef2">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="39.0" layoutY="47.0" prefHeight="45.0" prefWidth="208.0" text="Out of stock" textFill="#d7e3eb">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="btnOutOfStock" layoutX="39.0" layoutY="130.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: DarkOrange;" text="More" textFill="#f8eeee">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="153.0" prefWidth="256.0" style="-fx-background-color: #4169E1;">
+                           <children>
+                              <Label fx:id="totalSales" layoutX="42.0" layoutY="8.0" prefHeight="45.0" prefWidth="133.0" text="0" textFill="#e3eef2">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="39.0" layoutY="47.0" prefHeight="45.0" prefWidth="208.0" text="Total sales" textFill="#d7e3eb">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="btnTotalSales" layoutX="39.0" layoutY="130.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: #1E90FF;" text="More" textFill="#f8eeee">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="153.0" prefWidth="256.0" style="-fx-background-color: DarkCyan;">
+                           <children>
+                              <Label fx:id="similarCompanies" layoutX="42.0" layoutY="8.0" prefHeight="45.0" prefWidth="152.0" text="0" textFill="#e3eef2">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="39.0" layoutY="47.0" prefHeight="45.0" prefWidth="208.0" text="SimilarCompany" textFill="#d7e3eb">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="btnsimilarCompanies" layoutX="39.0" layoutY="130.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: CadetBlue;" text="More" textFill="#f8eeee">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </Pane>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="30.0" right="20.0" top="20.0" />
+                     </padding>
+                  </FlowPane>
+               </center>
+            </BorderPane>
+         </center>
+      </BorderPane>
+   </center>
+</BorderPane>

@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="page_1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#dragged" onMouseReleased="#pressed" prefHeight="266.0" prefWidth="630.0" style="-fx-background-color: #C0C0C0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MyController">
+<BorderPane fx:id="addStockPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#dragged" onMousePressed="#pressed" prefHeight="266.0" prefWidth="630.0" style="-fx-background-color: #C0C0C0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AddStockController">
    <top>
       <HBox alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="1100.0" spacing="5.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
          <children>
@@ -37,18 +37,23 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <TextField editable="false" layoutX="321.0" layoutY="41.0" prefHeight="22.0" prefWidth="259.0" style="-fx-background-color: #C0C0C0;" text="280">
+                  <TextField fx:id="currentQuantity" editable="false" layoutX="321.0" layoutY="41.0" prefHeight="22.0" prefWidth="259.0" style="-fx-background-color: #C0C0C0;" text="280">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </TextField>
                   <Line endX="158.0" layoutX="422.0" layoutY="77.0" startX="-100.0" />
-                  <TextField layoutX="322.0" layoutY="78.0" prefHeight="36.0" prefWidth="259.0" style="-fx-background-color: #C0C0C0;">
+                  <TextField fx:id="quantityToAdd" layoutX="322.0" layoutY="78.0" prefHeight="36.0" prefWidth="259.0" style="-fx-background-color: #C0C0C0;">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </TextField>
                   <Line endX="158.0" layoutX="423.0" layoutY="114.0" startX="-100.0" />
+                  <Label fx:id="successMessage" layoutX="210.0" layoutY="2.0" prefHeight="35.0" prefWidth="256.0" textFill="#0da134">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </center>
@@ -57,7 +62,7 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="201.0" style="-fx-background-color: DarkSlateBlue;" text="Add Stock" textFill="WHITE">
+            <Button fx:id="btnAddStock" mnemonicParsing="false" onMouseClicked="#confirmAddStock" prefHeight="41.0" prefWidth="201.0" style="-fx-background-color: DarkSlateBlue;" text="Add Stock" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

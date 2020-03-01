@@ -10,27 +10,27 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="page_1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#dragged" onMouseReleased="#pressed" prefHeight="580.0" prefWidth="876.0" style="-fx-background-color: #C0C0C0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MyController">
+<BorderPane fx:id="page_1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#dragged" onMouseReleased="#pressed" prefHeight="580.0" prefWidth="876.0" style="-fx-background-color: #C0C0C0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MedicineDetailsController">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="19.0" prefWidth="1100.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
          <children>
-            <FontAwesomeIconView fx:id="icon_close" fill="#f80303" glyphName="CIRCLE" lineSpacing="10.0" onMouseClicked="#close" size="22" wrappingWidth="26.428571701049805" />
-            <FontAwesomeIconView fx:id="icon_fullscreen" fill="#f5c528" glyphName="CIRCLE" lineSpacing="10.0" onMouseClicked="#max" size="22" wrappingWidth="26.85714340209961" />
-            <FontAwesomeIconView fx:id="icon_iconize" fill="#62ceee" glyphName="MINUS" lineSpacing="10.0" onMouseClicked="#min" size="22" text="" wrappingWidth="26.285715103149414" />
+            <FontAwesomeIconView fx:id="icon_close" fill="#f80303" glyphName="CIRCLE" lineSpacing="10.0" onMouseClicked="#close" size="18" wrappingWidth="26.428571701049805" />
+            <FontAwesomeIconView fx:id="icon_fullscreen" fill="#f5c528" glyphName="CIRCLE" lineSpacing="10.0" onMouseClicked="#max" size="18" wrappingWidth="26.85714340209961" />
+            <FontAwesomeIconView fx:id="icon_iconize" fill="#62ceee" glyphName="MINUS" lineSpacing="10.0" onMouseClicked="#min" size="20" text="" wrappingWidth="26.285715103149414" />
          </children>
       </HBox>
    </top>
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <left>
-            <Pane prefHeight="458.0" prefWidth="431.0" BorderPane.alignment="CENTER">
+            <Pane prefHeight="460.0" prefWidth="454.0" BorderPane.alignment="CENTER">
                <children>
                   <Label layoutX="48.0" layoutY="37.0" prefHeight="41.0" prefWidth="182.0" text="Medine name:">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Label layoutX="48.0" layoutY="68.0" prefHeight="41.0" prefWidth="224.0" text="name">
+                  <Label fx:id="medicineName" layoutX="48.0" layoutY="68.0" prefHeight="41.0" prefWidth="328.0" text="name">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -40,7 +40,7 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Label layoutX="48.0" layoutY="140.0" prefHeight="41.0" prefWidth="153.0" text="ID">
+                  <Label fx:id="medicineID" layoutX="48.0" layoutY="140.0" prefHeight="41.0" prefWidth="182.0" text="ID">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -50,7 +50,7 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label layoutX="160.0" layoutY="229.0" prefHeight="39.0" prefWidth="301.0" text="name">
+                  <Label fx:id="companyName" layoutX="160.0" layoutY="229.0" prefHeight="39.0" prefWidth="271.0" text="name">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -60,7 +60,7 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label layoutX="122.0" layoutY="268.0" prefHeight="39.0" prefWidth="301.0" text="Date">
+                  <Label fx:id="batch" layoutX="122.0" layoutY="268.0" prefHeight="39.0" prefWidth="301.0" text="Date">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -70,9 +70,9 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label layoutX="216.0" layoutY="307.0" prefHeight="39.0" prefWidth="192.0" text="Date">
+                  <Label fx:id="dateExpiary" layoutX="216.0" layoutY="307.0" prefHeight="39.0" prefWidth="192.0" text="Date" textFill="#dd2c2c">
                      <font>
-                        <Font size="24.0" />
+                        <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
                   <Label layoutX="44.0" layoutY="346.0" prefHeight="39.0" prefWidth="231.0" text="Date of Manufacture:">
@@ -80,38 +80,38 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label layoutX="273.0" layoutY="346.0" prefHeight="39.0" prefWidth="204.0" text="Date">
+                  <Label fx:id="dateManufact" layoutX="273.0" layoutY="346.0" prefHeight="39.0" prefWidth="182.0" text="Date" textFill="#17a417">
                      <font>
-                        <Font size="24.0" />
+                        <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
          </left>
          <center>
-            <Pane prefHeight="358.0" prefWidth="545.0" BorderPane.alignment="CENTER">
+            <Pane prefHeight="460.0" prefWidth="414.0" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="160.0" layoutX="14.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="medicineImage" fitHeight="150.0" fitWidth="160.0" layoutX="14.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../resources/medicine1.jpg" />
                      </image>
                   </ImageView>
-                  <Label layoutX="62.0" layoutY="278.0" prefHeight="38.0" prefWidth="66.0" text="Price:">
+                  <Label layoutX="14.0" layoutY="306.0" prefHeight="38.0" prefWidth="66.0" text="Price:">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Label layoutX="128.0" layoutY="278.0" prefHeight="38.0" prefWidth="105.0" text="\$Price" textFill="#cd1b1b">
+                  <Label fx:id="price" layoutX="80.0" layoutY="306.0" prefHeight="38.0" prefWidth="105.0" text="\$Price" textFill="#cd1b1b">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Label layoutX="62.0" layoutY="316.0" prefHeight="38.0" prefWidth="209.0" text="Stock Availability:">
+                  <Label layoutX="8.0" layoutY="344.0" prefHeight="38.0" prefWidth="113.0" text="Quantity:">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Label layoutX="271.0" layoutY="316.0" prefHeight="38.0" prefWidth="168.0" text="Not Available" textFill="#23863c">
+                  <Label fx:id="quantity" layoutX="121.0" layoutY="344.0" prefHeight="38.0" prefWidth="168.0" text="number" textFill="#23863c">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -124,12 +124,12 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="201.0" style="-fx-background-color: DarkSlateBlue;" text="Add Stock" textFill="WHITE">
+            <Button fx:id="btnAddStock" mnemonicParsing="false" onMouseClicked="#getAddStock" prefHeight="41.0" prefWidth="201.0" style="-fx-background-color: DarkSlateBlue;" text="Add Stock" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="201.0" style="-fx-background-color: Coral;" text="Close" textFill="WHITE">
+            <Button fx:id="btnClose" mnemonicParsing="false" onMouseClicked="#close" prefHeight="41.0" prefWidth="201.0" style="-fx-background-color: Coral;" text="Close" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

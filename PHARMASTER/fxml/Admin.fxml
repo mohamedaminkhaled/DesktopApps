@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="adminPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#dragged" onMousePressed="#pressed" prefHeight="750.0" prefWidth="1100.0" style="-fx-background-color: #C0C0C0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
+<BorderPane fx:id="adminPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#dragged" onMousePressed="#pressed" prefHeight="750.0" prefWidth="1180.0" style="-fx-background-color: #C0C0C0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AdminController">
    <top>
       <HBox alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="1100.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
          <children>
@@ -51,7 +51,7 @@
                   <HBox alignment="CENTER" prefHeight="28.0" prefWidth="252.0" style="-fx-background-color: #000000;">
                      <children>
                         <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="30" />
-                        <Button mnemonicParsing="false" onMouseClicked="#getDashboard" prefHeight="45.0" prefWidth="170.0" style="-fx-background-color: #000000;" text="Dashboard" textFill="#fff8f8">
+                        <Button mnemonicParsing="false" onMouseClicked="#setDashboard" prefHeight="45.0" prefWidth="170.0" style="-fx-background-color: #000000;" text="Dashboard" textFill="#fff8f8">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>

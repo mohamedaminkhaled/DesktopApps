@@ -5,6 +5,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,6 +44,49 @@ public class SearchMedicineController {
 				ResultSet.CONCUR_READ_ONLY);
 		rs=state.executeQuery(strSelect);
 		
+		while(rs.next()) {
+			FXMLLoader loaderMedicineCard = new FXMLLoader(getClass().getResource("/UserPages/MedicineCard.fxml"));
+	    	Parent root = loaderMedicineCard.load();
+
+	    	MedicineCardController medicineCardController = loaderMedicineCard.getController();
+			
+			medicineCardController.setMedicineCard(rs.getString("id"));
+			flowPaneContent.getChildren().addAll(root);
+		} 
+    }
+    
+    void getOutOfStockMedicines(String date) throws SQLException, IOException {
+    	Statement state;
+		ResultSet rs;
+		
+		String strSelectOutOfStock = "SELECT * FROM `medicines` WHERE `dateexpiary` < '"+date+"'";
+		
+		Connection conn=DBinfo.connDB();
+		state=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+				ResultSet.CONCUR_READ_ONLY);
+		rs=state.executeQuery(strSelectOutOfStock);
+		
+		while(rs.next()) {
+			FXMLLoader loaderMedicineCard = new FXMLLoader(getClass().getResource("/UserPages/MedicineCard.fxml"));
+	    	Parent root = loaderMedicineCard.load();
+
+	    	MedicineCardController medicineCardController = loaderMedicineCard.getController();
+			
+			medicineCardController.setMedicineCard(rs.getString("id"));
+			flowPaneContent.getChildren().addAll(root);
+		} 
+    }
+    
+    void getExpiaryThisMonth(String dateMorThan, String dateLessOrEqual) throws SQLException, IOException {
+    	Statement state;
+		ResultSet rs;
+    	
+    	String strSelectExpiaryThisMonth = "SELECT * FROM `medicines` WHERE (`dateexpiary` > '"+dateMorThan+"') AND (`dateexpiary` <= '"+dateLessOrEqual+"')"; 
+    	Connection conn=DBinfo.connDB();
+		state=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+				ResultSet.CONCUR_READ_ONLY);
+		rs=state.executeQuery(strSelectExpiaryThisMonth);
+    	
 		while(rs.next()) {
 			FXMLLoader loaderMedicineCard = new FXMLLoader(getClass().getResource("/UserPages/MedicineCard.fxml"));
 	    	Parent root = loaderMedicineCard.load();

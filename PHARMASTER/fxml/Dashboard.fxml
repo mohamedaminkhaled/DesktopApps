@@ -29,7 +29,7 @@
                      <children>
                         <Pane prefHeight="153.0" prefWidth="256.0" style="-fx-background-color: #2F4F4F;">
                            <children>
-                              <Label fx:id="totalMedicine" layoutX="42.0" layoutY="8.0" prefHeight="45.0" prefWidth="148.0" text="0" textFill="#e3eef2">
+                              <Label fx:id="totalMedicine" layoutX="42.0" layoutY="8.0" prefHeight="45.0" prefWidth="148.0" textFill="#e3eef2">
                                  <font>
                                     <Font size="30.0" />
                                  </font>
@@ -39,7 +39,7 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="btnTotalMedicine" layoutX="39.0" layoutY="130.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: #008B8B;" text="More" textFill="#f8eeee">
+                              <Button fx:id="btnTotalMedicine" layoutX="39.0" layoutY="130.0" mnemonicParsing="false" onMouseClicked="#getTotalMedicines" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: #008B8B;" text="More" textFill="#f8eeee">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -48,7 +48,7 @@
                         </Pane>
                         <Pane prefHeight="153.0" prefWidth="256.0" style="-fx-background-color: #483D8B;">
                            <children>
-                              <Label fx:id="expiaryThisMonth" layoutX="42.0" layoutY="8.0" prefHeight="45.0" prefWidth="154.0" text="0" textFill="#e3eef2">
+                              <Label fx:id="expiaryThisMonth" layoutX="42.0" layoutY="8.0" prefHeight="45.0" prefWidth="154.0" textFill="#e3eef2">
                                  <font>
                                     <Font size="30.0" />
                                  </font>
@@ -58,7 +58,7 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="btnExpiaryThisMonth" layoutX="39.0" layoutY="129.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: BlueViolet;" text="More" textFill="#f8eeee">
+                              <Button fx:id="btnExpiaryThisMonth" layoutX="39.0" layoutY="129.0" mnemonicParsing="false" onMouseClicked="#getExpiarythisMonth" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: BlueViolet;" text="More" textFill="#f8eeee">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -67,7 +67,7 @@
                         </Pane>
                         <Pane prefHeight="153.0" prefWidth="256.0" style="-fx-background-color: #FF4500;">
                            <children>
-                              <Label fx:id="outOfStock" layoutX="42.0" layoutY="8.0" prefHeight="45.0" prefWidth="169.0" text="0" textFill="#e3eef2">
+                              <Label fx:id="outOfStock" layoutX="42.0" layoutY="8.0" prefHeight="45.0" prefWidth="169.0" textFill="#e3eef2">
                                  <font>
                                     <Font size="30.0" />
                                  </font>
@@ -77,7 +77,7 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="btnOutOfStock" layoutX="39.0" layoutY="130.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: DarkOrange;" text="More" textFill="#f8eeee">
+                              <Button fx:id="btnOutOfStock" layoutX="39.0" layoutY="130.0" mnemonicParsing="false" onMouseClicked="#getOutOfStock" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: Sienna;" text="More" textFill="#f8eeee">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -96,7 +96,7 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="btnTotalSales" layoutX="39.0" layoutY="130.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: #1E90FF;" text="More" textFill="#f8eeee">
+                              <Button fx:id="btnTotalSales" layoutX="39.0" layoutY="130.0" mnemonicParsing="false" onMouseClicked="#getTotalSales" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: #1E90FF;" text="More" textFill="#f8eeee">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -105,7 +105,7 @@
                         </Pane>
                         <Pane prefHeight="153.0" prefWidth="256.0" style="-fx-background-color: DarkCyan;">
                            <children>
-                              <Label fx:id="similarCompanies" layoutX="42.0" layoutY="8.0" prefHeight="45.0" prefWidth="152.0" text="0" textFill="#e3eef2">
+                              <Label fx:id="similarCompanies" layoutX="42.0" layoutY="8.0" prefHeight="45.0" prefWidth="152.0" textFill="#e3eef2">
                                  <font>
                                     <Font size="30.0" />
                                  </font>
@@ -115,7 +115,7 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="btnsimilarCompanies" layoutX="39.0" layoutY="130.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: CadetBlue;" text="More" textFill="#f8eeee">
+                              <Button fx:id="btnsimilarCompanies" layoutX="39.0" layoutY="130.0" mnemonicParsing="false" onMouseClicked="#getSimilarCompanies" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: CadetBlue;" text="More" textFill="#f8eeee">
                                  <font>
                                     <Font size="14.0" />
                                  </font>

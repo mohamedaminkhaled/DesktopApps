@@ -1,5 +1,10 @@
 package application;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,7 +22,7 @@ public class Main extends Application {
 			primaryStage.setResizable(true);
 			primaryStage.setScene(scene);
 			primaryStage.initStyle(StageStyle.TRANSPARENT);
-			//primaryStage.setOpacity(0.9);
+			//primaryStage.setOpacity(0.9);				    	
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();

@@ -1,7 +1,14 @@
 package application;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
@@ -127,12 +134,74 @@ public class ClientController {
     }
     
     @FXML
-    void setDashboard() throws IOException {
+    void setDashboard() throws IOException, SQLException {
+    	
+    	Statement state;
+		ResultSet rs;
+		
+		
+		Connection conn=DBinfo.connDB();
+		state=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+				ResultSet.CONCUR_READ_ONLY);
+		
     	FXMLLoader loaderDashboard = new FXMLLoader(getClass().getResource("/fxml/Dashboard.fxml"));
     	Parent root = loaderDashboard.load();
     	
     	DashboardController dashboardController = loaderDashboard.getController();
     	dashboardController.setWelcomeMessage("Welcom, "+clientName.getText());
+    	
+    	String strSelectTotalMedicines = "SELECT * FROM medicines";
+
+		rs=state.executeQuery(strSelectTotalMedicines);
+		rs.last();
+		int totalMedicines = rs.getRow();
+    	
+    	dashboardController.setTotalMedicine(String.valueOf(totalMedicines));
+
+    	String strSelectSimilarCompanies = "SELECT DISTINCT `company` FROM `medicines`";
+		rs=state.executeQuery(strSelectSimilarCompanies);
+		rs.last();
+		int intSimilarCompanies = rs.getRow();
+    	
+    	dashboardController.setSimilarCompanies(String.valueOf(intSimilarCompanies));
+    	
+    	Date date = new Date();
+		DateFormat dateFormate = new SimpleDateFormat("yyyy/MM/dd");
+		String dateTimt = dateFormate.format(date);
+		dateTimt = dateTimt.replace("/","-");
+    	
+		// select medicines out of stock
+		String strSelectOutOfStock = "SELECT * FROM `medicines` WHERE `dateexpiary` < '"+dateTimt+"'";
+		rs=state.executeQuery(strSelectOutOfStock);
+		rs.last();
+		int intOutOfStock = rs.getRow();
+    	
+    	dashboardController.setOutOfStock(String.valueOf(intOutOfStock));
+    	
+    	//select expiary this month
+		String strFullDate = dateFormate.format(date);
+		String strYear = strFullDate.substring(0, 4);
+		int intYear = Integer.parseInt(strYear);
+		
+		GregorianCalendar gc = new GregorianCalendar(intYear, date.getMonth(), 0);
+    	date = gc.getTime();
+    	String gcTimeMore = dateFormate.format(date);
+    	gcTimeMore = gcTimeMore.replace("/","-");
+    	
+    	GregorianCalendar gc2 = new GregorianCalendar(intYear, date.getMonth()+2, 0);
+    	date = gc2.getTime();
+    	String gcTimeLessOrEqual = dateFormate.format(date);
+    	gcTimeLessOrEqual = gcTimeLessOrEqual.replace("/","-");
+    	
+    	
+    	
+    	String strSelectExpiaryThisMonth = "SELECT * FROM `medicines` WHERE (`dateexpiary` > '"+gcTimeMore+"') AND (`dateexpiary` <= '"+gcTimeLessOrEqual+"')"; 
+    	rs=state.executeQuery(strSelectExpiaryThisMonth);
+		rs.last();
+		int intExpiaryThisMonth = rs.getRow();
+    	
+    	dashboardController.setExpiaryThisMonth(String.valueOf(intExpiaryThisMonth));
+    			
     	
     	borderPaneContent.setCenter(root);
     }

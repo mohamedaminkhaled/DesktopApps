@@ -34,14 +34,14 @@ public class ControlOperations {
 		try {
 			Stage stage=new Stage();
 			
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("submitWithdraw.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/submitWithdraw.fxml"));
 			Parent root = loader.load();
 			
 			SubmitWithdrawController submitWithdrawController = loader.getController();
 			submitWithdrawController.setStrip(stripFromMain);
 			
 			Scene scene=new Scene(root,582,313);
-			scene.getStylesheets().add(getClass().getResource("submitWithdraw.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("/styles/submitWithdraw.css").toExternalForm());
 			stage.setScene(scene);
 			stage.setTitle("Withdrawal Screen");
 			stage.show();
@@ -54,14 +54,14 @@ public class ControlOperations {
 		try {
 			Stage stage=new Stage();
 			
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("submitDeposit.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/submitDeposit.fxml"));
 			Parent root = loader.load();
 
 			SubmitDepositController submitDepositController = loader.getController();
 			submitDepositController.setStrip(stripFromMain);
 			
 			Scene scene=new Scene(root,582,313);
-			scene.getStylesheets().add(getClass().getResource("submitWithdraw.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("/styles/submitWithdraw.css").toExternalForm());
 			stage.setScene(scene);
 			stage.setTitle("Deposit Screen");
 			stage.show();
@@ -100,7 +100,7 @@ public class ControlOperations {
 
 			Stage stage=new Stage();
 			
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("check.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/check.fxml"));
 			Parent root = loader.load();
 			
 			CheckController checkController = loader.getController();
@@ -113,12 +113,12 @@ public class ControlOperations {
 			checkController.addToTextArea("Account type: "+accType);
 			checkController.addToTextArea("Account Balance: $"+balance);
 			
-			DateFormat dateFormate = new SimpleDateFormat("yyyy/mm/dd hh:mm:ss");
+			DateFormat dateFormate = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
 			String dateTimt = dateFormate.format(currentDateTime);
 			checkController.addToTextArea("Current date time: "+dateTimt);
 			
 			Scene scene=new Scene(root,506,489);
-			scene.getStylesheets().add(getClass().getResource("check.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("/styles/check.css").toExternalForm());
 			stage.setScene(scene);
 			stage.setTitle("Check Screen");
 			stage.show();

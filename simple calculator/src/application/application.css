@@ -1,0 +1,20 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.root{
+	-fx-background-color: rgb(0,51,51);
+}
+
+Button{
+	-fx-background-color: rgb(230,230,230);
+	-fx-border-radius: 4px;
+}
+
+Button:hover{
+	-fx-background-color: rgb(255,255,255);
+	-fx-border-radius: 4px;
+}
+
+TextField{
+	-fx-background-color: rgb(230,230,230);
+	-fx-font-size: 24px; 
+}

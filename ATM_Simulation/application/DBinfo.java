@@ -5,8 +5,8 @@ import java.sql.SQLException;
 
 public class DBinfo {
 	
-	private static String username = "mohamed";
-	private static String password = "amin";
+	private static String username = "root";
+	private static String password = "";
 	private static String connectin_link = "jdbc:mysql://localhost/atmdb";
 	
 	public static Connection DBcon() throws SQLException {

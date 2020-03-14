@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-stylesheet application.css?>
+
+<AnchorPane prefHeight="442.0" prefWidth="343.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="application.Controller">
+  <!-- TODO Add Nodes -->
+  <children>
+    <Button fx:id="btn_7" layoutX="55.0" layoutY="81.0" mnemonicParsing="false" onAction="#control_7" prefHeight="33.0" prefWidth="39.0" text="7">
+      <font>
+        <Font name="System Bold" size="18.0" fx:id="x1" />
+      </font>
+    </Button>
+    <Button fx:id="btn_div" layoutX="246.0" layoutY="199.0" mnemonicParsing="false" onAction="#control_div" prefHeight="88.0" prefWidth="43.0" text="/">
+      <font>
+        <Font name="System Bold" size="20.0" fx:id="x2" />
+      </font>
+    </Button>
+    <TextField fx:id="tf" layoutX="12.0" layoutY="14.0" prefHeight="52.0" prefWidth="319.0" />
+    <Button fx:id="btn_0" font="$x1" layoutX="55.0" layoutY="253.0" mnemonicParsing="false" onAction="#control_0" prefHeight="33.0" prefWidth="39.0" text="0" />
+    <Button id="btn_star" fx:id="btn_mul" contentDisplay="CENTER" font="$x1" layoutX="184.0" layoutY="253.0" mnemonicParsing="false" onAction="#control_mul" prefHeight="33.0" prefWidth="39.0" text="*" textAlignment="LEFT" />
+    <Button fx:id="btn_dot" font="$x1" layoutX="121.0" layoutY="253.0" mnemonicParsing="false" onAction="#control_dot" prefHeight="33.0001220703125" prefWidth="39.0001220703125" text="." />
+    <Button fx:id="btn_3" font="$x1" layoutX="182.0" layoutY="199.0" mnemonicParsing="false" onAction="#control_3" prefHeight="33.0" prefWidth="39.0" text="3" />
+    <Button fx:id="btn_2" font="$x1" layoutX="119.0" layoutY="199.0" mnemonicParsing="false" onAction="#control_2" prefHeight="33.0" prefWidth="39.0" text="2" />
+    <Button fx:id="btn_1" font="$x1" layoutX="55.0" layoutY="199.0" mnemonicParsing="false" onAction="#control_1" prefHeight="33.0" prefWidth="39.0" text="1" />
+    <Button fx:id="btn_6" font="$x1" layoutX="182.0" layoutY="140.0" mnemonicParsing="false" onAction="#control_6" prefHeight="33.0" prefWidth="39.0" text="6" />
+    <Button fx:id="btn_5" font="$x1" layoutX="119.0" layoutY="140.0" mnemonicParsing="false" onAction="#control_5" prefHeight="33.0" prefWidth="39.0" text="5" />
+    <Button fx:id="btn_4" font="$x1" layoutX="55.0" layoutY="140.0" mnemonicParsing="false" onAction="#control_4" prefHeight="33.0" prefWidth="39.0" text="4" />
+    <Button fx:id="btn_9" font="$x1" layoutX="182.0" layoutY="81.0" mnemonicParsing="false" onAction="#control_9" prefHeight="33.0" prefWidth="39.0" text="9" />
+    <Button id="btn" fx:id="btn_8" font="$x1" layoutX="119.0" layoutY="81.0" mnemonicParsing="false" onAction="#control_8" prefHeight="33.0" prefWidth="39.0" text="8" />
+    <Button id="btn_plus" fx:id="btn_add" font="$x1" layoutX="243.0" layoutY="81.0" mnemonicParsing="false" onAction="#control_add" prefHeight="33.0" prefWidth="42.9998779296875" text="+" />
+    <Button font="$x1" layoutX="184.0" layoutY="306.0" mnemonicParsing="false" onAction="#control_result" prefHeight="36.0" prefWidth="105.0" text="=" />
+    <Button id="btn_minus" fx:id="btn_sub" font="$x2" layoutX="243.0" layoutY="140.0" mnemonicParsing="false" onAction="#control_sub" prefHeight="36.0" prefWidth="43.000099999997474" text="-" textAlignment="LEFT" />
+    <Button font="$x1" layoutX="55.0" layoutY="367.0" mnemonicParsing="false" onAction="#control_Tan" prefHeight="34.0" prefWidth="72.0" text="tan" />
+    <Button font="$x1" layoutX="55.0" layoutY="306.0" mnemonicParsing="false" onAction="#control_Clr" prefHeight="33.0" prefWidth="39.0" text="C" />
+    <Button layoutX="122.0" layoutY="306.0" mnemonicParsing="false" onAction="#control_Factorial" prefHeight="32.999900000002526" prefWidth="38.9998779296875" text="n!">
+      <font>
+        <Font size="15.0" />
+      </font>
+    </Button>
+    <Button font="$x1" layoutX="136.0" layoutY="367.0" mnemonicParsing="false" onAction="#control_Sine" prefHeight="34.0" prefWidth="72.0" text="sine" />
+    <Button font="$x1" layoutX="217.0" layoutY="367.0" mnemonicParsing="false" onAction="#control_Cosin" prefHeight="34.0" prefWidth="72.0" text="cos" />
+  </children>
+</AnchorPane>

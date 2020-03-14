@@ -18,7 +18,7 @@
             <FontAwesomeIconView fx:id="icon_close" fill="#f80303" glyphName="CLOSE" lineSpacing="10.0" onMouseClicked="#close" size="22" wrappingWidth="26.428571701049805" />
          </children>
          <padding>
-            <Insets bottom="3.0" left="5.0" />
+            <Insets bottom="5.0" left="5.0" right="3.0" top="3.0" />
          </padding>
       </HBox>
    </top>

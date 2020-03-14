@@ -121,7 +121,7 @@ public class Mycontroller {
 					String name = rs.getString("NAME");
 					System.out.println(name);
 					
-					FXMLLoader loader = new FXMLLoader(getClass().getResource("welcom.fxml"));
+					FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/welcom.fxml"));
 					Parent root = loader.load();
 					//Parent root=FXMLLoader.load(getClass().getResource("welcom.fxml"));
 					
@@ -131,7 +131,7 @@ public class Mycontroller {
 					
 					Stage welcomStage=new Stage();
 					Scene scene=new Scene(root,627,350);
-					scene.getStylesheets().add(getClass().getResource("welcom.css").toExternalForm());
+					scene.getStylesheets().add(getClass().getResource("/styles/welcom.css").toExternalForm());
 					welcomStage.setScene(scene);
 					welcomStage.setTitle("Welcom Screen");
 					welcomStage.show();

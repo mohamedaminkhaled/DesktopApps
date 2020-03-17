@@ -69,12 +69,12 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="btnAddStock" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#getAddStock" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: Tan;" text="Add Stock" textFill="#723d3d">
+            <Button layoutY="150.0" mnemonicParsing="false" onMouseClicked="#getAddStock" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: Tan;" text="Add Stock" textFill="#723d3d">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnViewMedicineDetails" layoutX="108.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#getMedicineDetails" prefHeight="30.0" prefWidth="89.0" style="-fx-background-color: DarkSlateBlue;" text="View" textFill="WHITE">
+            <Button layoutX="108.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#getMedicineDetails" prefHeight="30.0" prefWidth="89.0" style="-fx-background-color: DarkSlateBlue;" text="View" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

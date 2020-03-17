@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
@@ -53,4 +54,7 @@
       <Line endX="162.0" layoutX="428.0" layoutY="354.0" startX="-100.0" stroke="WHITE" />
       <Line endX="162.0" layoutX="428.0" layoutY="298.0" startX="-100.0" stroke="WHITE" />
    </children>
+   <effect>
+      <DropShadow height="77.34" radius="38.9125" spread="0.56" width="80.31" />
+   </effect>
 </AnchorPane>

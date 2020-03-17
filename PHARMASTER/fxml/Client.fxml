@@ -46,75 +46,70 @@
          <left>
             <VBox prefHeight="583.0" prefWidth="227.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER" prefHeight="28.0" prefWidth="252.0" style="-fx-background-color: #000000;">
+                  <HBox fx:id="hboxDashboard" alignment="CENTER_LEFT" onMouseClicked="#setDashboard" prefHeight="95.0" prefWidth="252.0" spacing="10.0">
                      <children>
                         <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="30" />
-                        <Button mnemonicParsing="false" onMouseClicked="#setDashboard" prefHeight="45.0" prefWidth="170.0" style="-fx-background-color: #000000;" text="Dashboard" textFill="#fff8f8">
+                        <Label prefHeight="51.0" prefWidth="154.0" text="Dashboard" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
-                        </Button>
+                        </Label>
                      </children>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="28.0" prefWidth="252.0" style="-fx-background-color: #000000;">
+                  <HBox fx:id="hboxAddMedicine" alignment="CENTER_LEFT" onMouseClicked="#getAddMedicine" prefHeight="95.0" prefWidth="252.0" spacing="10.0">
                      <children>
                         <FontAwesomeIconView fill="WHITE" glyphName="USER" size="30" />
-                        <Button fx:id="addMedicine" mnemonicParsing="false" onMouseClicked="#getAddMedicine" prefHeight="45.0" prefWidth="170.0" style="-fx-background-color: #000000;" text="Add Medicine" textFill="#fff8f8">
+                        <Label prefHeight="54.0" prefWidth="180.0" text="Add Medicine" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
-                        </Button>
+                        </Label>
                      </children>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="28.0" prefWidth="252.0" style="-fx-background-color: #000000;">
+                  <HBox fx:id="hboxViewMedicine" alignment="CENTER_LEFT" onMouseClicked="#getViewMedicine" prefHeight="95.0" prefWidth="252.0" spacing="10.0">
                      <children>
                         <FontAwesomeIconView fill="WHITE" glyphName="EDIT" size="30" />
-                        <Button mnemonicParsing="false" onMouseClicked="#getViewMedicine" prefHeight="45.0" prefWidth="170.0" style="-fx-background-color: #000000;" text="View Medicine" textFill="#fff8f8">
+                        <Label prefHeight="46.0" prefWidth="150.0" text="View Medicine" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
-                        </Button>
+                        </Label>
                      </children>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="28.0" prefWidth="252.0" style="-fx-background-color: #000000;">
+                  <HBox fx:id="hboxMyProfile" alignment="CENTER_LEFT" onMouseClicked="#getMyProfile" prefHeight="95.0" prefWidth="252.0" spacing="10.0">
                      <children>
-                        <FontAwesomeIconView fill="WHITE" glyphName="CARD" size="30" />
-                        <Button mnemonicParsing="false" onMouseClicked="#getMyProfile" prefHeight="45.0" prefWidth="170.0" style="-fx-background-color: #000000;" text="My Profile" textFill="#fff8f8">
+                        <FontAwesomeIconView fill="WHITE" glyphName="USER" size="30" />
+                        <Label prefHeight="59.0" prefWidth="163.0" text="My Profile" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
-                        </Button>
+                        </Label>
                      </children>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="28.0" prefWidth="252.0" style="-fx-background-color: #000000;">
-                     <children>
-                        <FontAwesomeIconView fill="WHITE" glyphName="INFO" size="30" />
-                        <Button mnemonicParsing="false" onMouseClicked="#getSysInfo" prefHeight="45.0" prefWidth="170.0" style="-fx-background-color: #000000;" text="System Info" textFill="#fff8f8">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="28.0" prefWidth="252.0" style="-fx-background-color: #000000;">
-                     <children>
-                        <FontAwesomeIconView fill="WHITE" glyphName="OUT" size="30" />
-                        <Button mnemonicParsing="false" onMouseClicked="#getLogout" prefHeight="45.0" prefWidth="170.0" style="-fx-background-color: #000000;" text="Logout" textFill="#fff8f8">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="28.0" prefWidth="252.0" style="-fx-background-color: #000000;">
+                  <HBox fx:id="hboxExitApp" alignment="CENTER_LEFT" onMouseClicked="#close" prefHeight="95.0" prefWidth="252.0" spacing="10.0">
                      <children>
                         <FontAwesomeIconView fill="#fc0808" glyphName="CLOSE" size="30" />
-                        <Button mnemonicParsing="false" onMouseClicked="#close" prefHeight="45.0" prefWidth="170.0" style="-fx-background-color: #000000;" text="Exit App" textFill="#fff8f8">
+                        <Label prefHeight="53.0" prefWidth="148.0" text="Exit App" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
-                        </Button>
+                        </Label>
                      </children>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
                   </HBox>
                </children>
             </VBox>

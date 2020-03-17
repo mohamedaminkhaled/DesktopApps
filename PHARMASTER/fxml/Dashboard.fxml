@@ -39,7 +39,7 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="btnTotalMedicine" layoutX="39.0" layoutY="130.0" mnemonicParsing="false" onMouseClicked="#getTotalMedicines" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: #008B8B;" text="More" textFill="#f8eeee">
+                              <Button layoutX="39.0" layoutY="130.0" mnemonicParsing="false" onMouseClicked="#getTotalMedicines" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: #008B8B;" text="More" textFill="#f8eeee">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -58,7 +58,7 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="btnExpiaryThisMonth" layoutX="39.0" layoutY="129.0" mnemonicParsing="false" onMouseClicked="#getExpiarythisMonth" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: BlueViolet;" text="More" textFill="#f8eeee">
+                              <Button layoutX="39.0" layoutY="129.0" mnemonicParsing="false" onMouseClicked="#getExpiarythisMonth" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: BlueViolet;" text="More" textFill="#f8eeee">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -77,7 +77,7 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="btnOutOfStock" layoutX="39.0" layoutY="130.0" mnemonicParsing="false" onMouseClicked="#getOutOfStock" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: Sienna;" text="More" textFill="#f8eeee">
+                              <Button layoutX="39.0" layoutY="130.0" mnemonicParsing="false" onMouseClicked="#getOutOfStock" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: Sienna;" text="More" textFill="#f8eeee">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -96,7 +96,7 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="btnTotalSales" layoutX="39.0" layoutY="130.0" mnemonicParsing="false" onMouseClicked="#getTotalSales" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: #1E90FF;" text="More" textFill="#f8eeee">
+                              <Button layoutX="39.0" layoutY="130.0" mnemonicParsing="false" onMouseClicked="#getTotalSales" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: #1E90FF;" text="More" textFill="#f8eeee">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -115,7 +115,7 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="btnsimilarCompanies" layoutX="39.0" layoutY="130.0" mnemonicParsing="false" onMouseClicked="#getSimilarCompanies" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: CadetBlue;" text="More" textFill="#f8eeee">
+                              <Button layoutX="39.0" layoutY="130.0" mnemonicParsing="false" onMouseClicked="#getSimilarCompanies" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: CadetBlue;" text="More" textFill="#f8eeee">
                                  <font>
                                     <Font size="14.0" />
                                  </font>

@@ -82,8 +82,7 @@ public class DashboardController {
     	
     	Scene scene=new Scene(root,839,543);
 		stage.setScene(scene);
-		//stage.initStyle(StageStyle.TRANSPARENT);
-		stage.setResizable(false);
+		stage.initStyle(StageStyle.UTILITY);
 		stage.show();
     	    	
     }
@@ -105,8 +104,7 @@ public class DashboardController {
     	
     	Scene scene=new Scene(root,839,543);
 		stage.setScene(scene);
-		//stage.initStyle(StageStyle.TRANSPARENT);
-		stage.setResizable(false);
+		stage.initStyle(StageStyle.UTILITY);
 		stage.show();
     }
 
@@ -128,8 +126,7 @@ public class DashboardController {
     	
     	Scene scene=new Scene(root,839,543);
 		stage.setScene(scene);
-		//stage.initStyle(StageStyle.TRANSPARENT);
-		stage.setResizable(false);
+		stage.initStyle(StageStyle.UTILITY);
 		stage.show();
     }
 

@@ -7,6 +7,41 @@
 	-fx-cursor:hand;
 }
 
+#hboxDashboard:hover{
+	-fx-cursor:hand;
+	-fx-background-color:rgb(63,63,63);
+}
+
+#hboxRegisterUser:hover{
+	-fx-cursor:hand;
+	-fx-background-color:rgb(63,63,63);
+}
+
+#hboxModifyUser:hover{
+	-fx-cursor:hand;
+	-fx-background-color:rgb(63,63,63);
+}
+
+#hboxMyProfile:hover{
+	-fx-cursor:hand;
+	-fx-background-color:rgb(63,63,63);
+}
+
+#hboxExitApp:hover{
+	-fx-cursor:hand;
+	-fx-background-color:rgb(63,63,63);
+}
+
+#hboxAddMedicine:hover{
+	-fx-cursor:hand;
+	-fx-background-color:rgb(63,63,63);
+}
+
+#hboxViewMedicine:hover{
+	-fx-cursor:hand;
+	-fx-background-color:rgb(63,63,63);
+}
+
 #datepickerManufact .text-field {
     -fx-control-inner-background:  #C0C0C0 ;
 }

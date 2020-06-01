@@ -16,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -44,7 +45,7 @@ public class AdminController {
     private Label adminName;
 
     @FXML
-    private ImageView adminImage;
+    ImageView adminImage;
 
     @FXML
     private Label totalMedicine;
@@ -163,6 +164,20 @@ public class AdminController {
     	
     	dashboardController.setExpiaryThisMonth(String.valueOf(intExpiaryThisMonth));
     	
+    	// select price and sold
+    	String selectPriceAndSold = "SELECT `price` , `sold` FROM `medicines`";
+    	rs=state.executeQuery(selectPriceAndSold);
+    	rs.first();
+    	int price, sold = 0;
+    	int totalSales = 0;
+    	
+    	while(rs.next()) {
+    		price = rs.getInt("price");
+    		sold = rs.getInt("sold");
+    		totalSales += (price * sold);
+    	}
+    	dashboardController.setTotalSales(String.valueOf(totalSales));
+    	
     	borderPaneContent.setCenter(root);
     }
 
@@ -193,6 +208,10 @@ public class AdminController {
     
     void setAdminName(String str) {
     	adminName.setText(str);
+    }
+    
+    void setAdminImage(Image image) {
+    	adminImage.setImage(image);
     }
     
     void loadPage(String ui) {

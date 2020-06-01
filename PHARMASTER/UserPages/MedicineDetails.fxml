@@ -128,12 +128,17 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onMouseClicked="#getAddStock" prefHeight="41.0" prefWidth="201.0" style="-fx-background-color: DarkSlateBlue;" text="Add Stock" textFill="WHITE">
+            <Button mnemonicParsing="false" onMouseClicked="#getAddStock" prefHeight="41.0" prefWidth="128.0" style="-fx-background-color: DarkSlateBlue;" text="Add Stock" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onMouseClicked="#close" prefHeight="41.0" prefWidth="201.0" style="-fx-background-color: Coral;" text="Close" textFill="WHITE">
+            <Button mnemonicParsing="false" onMouseClicked="#getSellStock" prefHeight="41.0" prefWidth="120.0" style="-fx-background-color: RoyalBlue;" text="Sell Stock" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onMouseClicked="#close" prefHeight="41.0" prefWidth="129.0" style="-fx-background-color: Coral;" text="Close" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

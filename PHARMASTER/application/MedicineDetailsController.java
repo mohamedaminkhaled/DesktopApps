@@ -124,6 +124,23 @@ public class MedicineDetailsController {
 		stage.show();
     }
     
+    @FXML
+    void getSellStock(MouseEvent event) throws IOException {
+    	Stage stage=new Stage();
+		
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/UserPages/SellStock.fxml"));
+		Parent root = loader.load();
+		
+		SellStockController sellStockController = loader.getController();
+		sellStockController.setCurrentQuantity(quantity.getText());
+		sellStockController.medicineID = medicineID.getText();
+	
+		Scene scene=new Scene(root,630,266);
+		stage.setScene(scene);
+		stage.initStyle(StageStyle.TRANSPARENT);
+		stage.show();
+    }
+    
     void setMedicineDetails(String id) throws SQLException {
     	Statement state;
 		ResultSet rs;

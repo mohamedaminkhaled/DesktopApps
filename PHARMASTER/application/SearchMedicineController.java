@@ -140,6 +140,29 @@ public class SearchMedicineController {
 			flowPaneContent.getChildren().addAll(root);
 		} 
     }
+    
+    void getMedicineSales() throws SQLException, IOException {
+    	
+    	Statement state;
+		ResultSet rs;
+		
+		String strSelectOutOfStock = "SELECT * FROM `medicines`";
+		
+		Connection conn=DBinfo.connDB();
+		state=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+				ResultSet.CONCUR_READ_ONLY);
+		rs=state.executeQuery(strSelectOutOfStock);
+		
+		while(rs.next()) {
+			FXMLLoader loaderSalesCard = new FXMLLoader(getClass().getResource("/UserPages/SalesCard.fxml"));
+	    	Parent root = loaderSalesCard.load();
+
+	    	SalesCardController salesCardController = loaderSalesCard.getController();
+			
+	    	salesCardController.setSalesCard(rs.getString("id"));
+			flowPaneContent.getChildren().addAll(root);
+		} 
+    }
 
     @FXML
     void serchMedicine(MouseEvent event) {

@@ -201,7 +201,20 @@ public class ClientController {
 		int intExpiaryThisMonth = rs.getRow();
     	
     	dashboardController.setExpiaryThisMonth(String.valueOf(intExpiaryThisMonth));
-    			
+    	
+    	// select price and sold
+    	String selectPriceAndSold = "SELECT `price` , `sold` FROM `medicines`";
+    	rs=state.executeQuery(selectPriceAndSold);
+    	rs.first();
+    	int price, sold = 0;
+    	int totalSales = 0;
+    	
+    	while(rs.next()) {
+    		price = rs.getInt("price");
+    		sold = rs.getInt("sold");
+    		totalSales += (price * sold);
+    	}
+    	dashboardController.setTotalSales(String.valueOf(totalSales));
     	
     	borderPaneContent.setCenter(root);
     }

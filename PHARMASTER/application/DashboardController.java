@@ -145,8 +145,20 @@ public class DashboardController {
     }
 
     @FXML
-    void getTotalSales(MouseEvent event) {
-
+    void getTotalSales(MouseEvent event) throws IOException, SQLException {
+    	
+    	Stage stage = new Stage();
+    	
+    	FXMLLoader loaderViewMedicine = new FXMLLoader(getClass().getResource("/UserPages/ViewMedicine.fxml"));
+    	Parent root = loaderViewMedicine.load();
+    	
+    	SearchMedicineController searchMedicineController = loaderViewMedicine.getController();
+    	searchMedicineController.getMedicineSales();
+    	
+    	Scene scene=new Scene(root,839,543);
+		stage.setScene(scene);
+		stage.initStyle(StageStyle.UTILITY);
+		stage.show();
     }
     
     void setWelcomeMessage(String str) {

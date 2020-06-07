@@ -16,23 +16,21 @@ import javafx.stage.StageStyle;
 public class CompanyCardController {
 
     @FXML
-    private Label companyName;
+    Label companyName;
     
     @FXML
     private BorderPane borderPaneCompanyCard;
 
     @FXML
     void viewMedicines(MouseEvent event) throws IOException, SQLException {
-    	
     	Stage stage = new Stage();
-    	
     	FXMLLoader loaderViewMedicine = new FXMLLoader(getClass().getResource("/UserPages/ViewMedicine.fxml"));
     	Parent root = loaderViewMedicine.load();
     	
-    	
+		String strSelectCompanyMedicines = "SELECT * FROM `medicines` WHERE `company` = '"+companyName.getText()+"'";
     	
     	SearchMedicineController searchMedicineController = loaderViewMedicine.getController();
-    	searchMedicineController.getCompanyMedicines(companyName.getText());
+    	searchMedicineController.getMedicines(strSelectCompanyMedicines);
     	
     	Scene scene=new Scene(root,839,543);
 		stage.setScene(scene);

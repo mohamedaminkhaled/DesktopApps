@@ -54,72 +54,94 @@ public class DashboardController {
     
     @FXML
     void getExpiarythisMonth(MouseEvent event) throws SQLException, IOException {
-    	
     	Stage stage = new Stage();
-    	
     	FXMLLoader loaderViewMedicine = new FXMLLoader(getClass().getResource("/UserPages/ViewMedicine.fxml"));
     	Parent root = loaderViewMedicine.load();
     	
+    	String gcTimeMore = getTimeMore();
+    	String gcTimeLessOrEqual = getTimeLessOrEqual();
+    	String strSelectExpiaryThisMonth = "SELECT * FROM `medicines` WHERE (`dateexpiary` > '"+gcTimeMore+"') AND (`dateexpiary` <= '"+gcTimeLessOrEqual+"')"; 
+
+    	SearchMedicineController searchMedicineController = loaderViewMedicine.getController();
+    	searchMedicineController.key = "getExpiarythisMonth";
+    	searchMedicineController.getMedicines(strSelectExpiaryThisMonth);
+    	
+    	Scene scene=new Scene(root,839,543);
+		stage.setScene(scene);
+		stage.initStyle(StageStyle.UTILITY);
+		stage.show();
+    }
+
+    @FXML
+    void getOutOfStock(MouseEvent event) throws IOException, SQLException {
+    	Stage stage = new Stage();
+    	FXMLLoader loaderViewMedicine = new FXMLLoader(getClass().getResource("/UserPages/ViewMedicine.fxml"));
+    	Parent root = loaderViewMedicine.load();
+    	
+    	String dateTimt = getDate();
+		String strSelectOutOfStock = "SELECT * FROM `medicines` WHERE `dateexpiary` < '"+dateTimt+"'";
+
+    	SearchMedicineController searchMedicineController = loaderViewMedicine.getController();
+    	searchMedicineController.key = "getOutOfStock";
+    	searchMedicineController.getMedicines(strSelectOutOfStock);
+    	
+    	Scene scene=new Scene(root,839,543);
+		stage.setScene(scene);
+		stage.initStyle(StageStyle.UTILITY);
+		stage.show();
+    }
+    
+    String getTimeMore() {
     	Date date = new Date();
 		DateFormat dateFormate = new SimpleDateFormat("yyyy/MM/dd");
 
     	String strFullDate = dateFormate.format(date);
 		String strYear = strFullDate.substring(0, 4);
 		int intYear = Integer.parseInt(strYear);
-		
-		@SuppressWarnings("deprecation")
+    	
+    	@SuppressWarnings("deprecation")
 		GregorianCalendar gc = new GregorianCalendar(intYear, date.getMonth(), 0);
     	date = gc.getTime();
     	String gcTimeMore = dateFormate.format(date);
     	gcTimeMore = gcTimeMore.replace("/","-");
+    	return gcTimeMore;
+    }
+    
+    String getTimeLessOrEqual() {
+    	Date date = new Date();
+		DateFormat dateFormate = new SimpleDateFormat("yyyy/MM/dd");
+
+    	String strFullDate = dateFormate.format(date);
+		String strYear = strFullDate.substring(0, 4);
+		int intYear = Integer.parseInt(strYear);
     	
     	@SuppressWarnings("deprecation")
 		GregorianCalendar gc2 = new GregorianCalendar(intYear, date.getMonth()+2, 0);
     	date = gc2.getTime();
     	String gcTimeLessOrEqual = dateFormate.format(date);
     	gcTimeLessOrEqual = gcTimeLessOrEqual.replace("/","-");
-    	
-    	SearchMedicineController searchMedicineController = loaderViewMedicine.getController();
-    	searchMedicineController.getExpiaryThisMonth(gcTimeMore, gcTimeLessOrEqual);
-    	
-    	Scene scene=new Scene(root,839,543);
-		stage.setScene(scene);
-		stage.initStyle(StageStyle.UTILITY);
-		stage.show();
-    	    	
+    	return gcTimeLessOrEqual;
     }
-
-    @FXML
-    void getOutOfStock(MouseEvent event) throws IOException, SQLException {
-    	Stage stage = new Stage();
-    	
-    	FXMLLoader loaderViewMedicine = new FXMLLoader(getClass().getResource("/UserPages/ViewMedicine.fxml"));
-    	Parent root = loaderViewMedicine.load();
-    	
+    
+    String getDate() {
     	Date date = new Date();
 		DateFormat dateFormate = new SimpleDateFormat("yyyy/MM/dd");
 		String dateTimt = dateFormate.format(date);
 		dateTimt = dateTimt.replace("/","-");
-    	
-    	SearchMedicineController searchMedicineController = loaderViewMedicine.getController();
-    	searchMedicineController.getOutOfStockMedicines(dateTimt);
-    	
-    	Scene scene=new Scene(root,839,543);
-		stage.setScene(scene);
-		stage.initStyle(StageStyle.UTILITY);
-		stage.show();
+		return dateTimt;
     }
 
     @FXML
     void getSimilarCompanies(MouseEvent event) throws IOException, SQLException {
-    	
+    	String strSelectSimilarCompanies = "SELECT DISTINCT `company` FROM `medicines`";
+
     	Stage stage = new Stage();
-    	
     	FXMLLoader loaderViewMedicine = new FXMLLoader(getClass().getResource("/UserPages/ViewMedicine.fxml"));
     	Parent root = loaderViewMedicine.load();
     	
     	SearchMedicineController searchMedicineController = loaderViewMedicine.getController();
-    	searchMedicineController.getCompanies();
+    	searchMedicineController.key = "getSimilarCompanies";
+    	searchMedicineController.getCompanies(strSelectSimilarCompanies);
     	
     	Scene scene=new Scene(root,839,543);
 		stage.setScene(scene);
@@ -129,14 +151,15 @@ public class DashboardController {
 
     @FXML
     void getTotalMedicines(MouseEvent event) throws IOException, SQLException {
-    	
+		String strSelect = "SELECT `id` FROM medicines";
+
     	Stage stage = new Stage();
-    	
     	FXMLLoader loaderViewMedicine = new FXMLLoader(getClass().getResource("/UserPages/ViewMedicine.fxml"));
     	Parent root = loaderViewMedicine.load();
     	
     	SearchMedicineController searchMedicineController = loaderViewMedicine.getController();
-    	searchMedicineController.getMedicines();
+    	searchMedicineController.key = "getTotalMedicines";
+    	searchMedicineController.getMedicines(strSelect);
     	
     	Scene scene=new Scene(root,839,543);
 		stage.setScene(scene);
@@ -146,14 +169,15 @@ public class DashboardController {
 
     @FXML
     void getTotalSales(MouseEvent event) throws IOException, SQLException {
+		String strSelectTotalSales = "SELECT * FROM `medicines`";
     	
     	Stage stage = new Stage();
-    	
     	FXMLLoader loaderViewMedicine = new FXMLLoader(getClass().getResource("/UserPages/ViewMedicine.fxml"));
     	Parent root = loaderViewMedicine.load();
     	
     	SearchMedicineController searchMedicineController = loaderViewMedicine.getController();
-    	searchMedicineController.getMedicineSales();
+    	searchMedicineController.key = "getTotalSales";
+    	searchMedicineController.getMedicineSales(strSelectTotalSales);
     	
     	Scene scene=new Scene(root,839,543);
 		stage.setScene(scene);

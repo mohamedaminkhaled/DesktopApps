@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPaneCompanyCard" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="117.0" prefWidth="230.0" style="-fx-background-color: DarkCyan;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CompanyCardController">
+<BorderPane fx:id="borderPaneCompanyCard" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="130.0" prefWidth="218.0" style="-fx-background-color: DarkCyan;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CompanyCardController">
    <bottom>
-      <Button mnemonicParsing="false" onMouseClicked="#viewMedicines" prefHeight="22.0" prefWidth="164.0" style="-fx-background-color: CornflowerBlue;" text="VIEW MEDICINES" BorderPane.alignment="CENTER">
+      <Button mnemonicParsing="false" onMouseClicked="#viewMedicines" prefHeight="29.0" prefWidth="164.0" style="-fx-background-color: CornflowerBlue;" text="VIEW MEDICINES" BorderPane.alignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>

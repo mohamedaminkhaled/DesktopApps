@@ -123,11 +123,14 @@ public class ClientController {
     @FXML
     void getViewMedicine(MouseEvent event) throws SQLException, IOException {
     	
+		String strSelect = "SELECT `id` FROM medicines";
+
     	FXMLLoader loaderViewMedicine = new FXMLLoader(getClass().getResource("/UserPages/ViewMedicine.fxml"));
     	Parent root = loaderViewMedicine.load();
     	
     	SearchMedicineController searchMedicineController = loaderViewMedicine.getController();
-    	searchMedicineController.getMedicines();
+    	searchMedicineController.key = "getTotalMedicines";
+    	searchMedicineController.getMedicines(strSelect);
     	
     	borderPaneContent.setCenter(root);
     	

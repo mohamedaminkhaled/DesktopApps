@@ -70,8 +70,8 @@ public class AddMedicineController {
     void confirmAddMedicine(MouseEvent event) throws SQLException {
     	Connection conn=DBinfo.connDB();
 		String sql="INSERT INTO `medicines`(`id`,`name`, `company`, "
-    			+ "`batch`, `datemanifact`, `dateexpiary`, `price`,`quantity`, `image`) "
-				+ "VALUES (?,?,?,?,?,?,?,?,?)";
+    			+ "`batch`, `datemanifact`, `dateexpiary`, `price`,`quantity`,`sold`,`image`) "
+				+ "VALUES (?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement ps;
 		
 		ps = conn.prepareStatement(sql);
@@ -84,9 +84,9 @@ public class AddMedicineController {
 		ps.setString(6, datepickerExpire.getValue().toString());
 		ps.setString(7, tfPrice.getText());
 		ps.setString(8, tfQuantity.getText());
-		ps.setString(9, medicineImage.getImage().getUrl());
+		ps.setInt(9, 0);
+		ps.setString(10, medicineImage.getImage().getUrl());
 		ps.executeUpdate();
-		System.out.println("Row inserted!");
     }
 
     @FXML

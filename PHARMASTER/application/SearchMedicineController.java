@@ -5,6 +5,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,13 +32,13 @@ public class SearchMedicineController {
     @FXML
     private FlowPane flowPaneContent;
     
-    void getMedicines() throws SQLException, IOException {
+    String key = null;
+    
+    void getMedicines(String strSelect) throws SQLException, IOException {
     	
     	Statement state;
 		ResultSet rs;
-		
-		String strSelect = "SELECT `id` FROM medicines";
-		
+				
 		Connection conn=DBinfo.connDB();
 		state=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 				ResultSet.CONCUR_READ_ONLY);
@@ -52,13 +55,11 @@ public class SearchMedicineController {
 		} 
     }
     
-    void getCompanies() throws SQLException, IOException {
+    void getCompanies(String strSelectSimilarCompanies) throws SQLException, IOException {
     	
     	Statement state;
 		ResultSet rs;
-		
-    	String strSelectSimilarCompanies = "SELECT DISTINCT `company` FROM `medicines`";
-		
+				
 		Connection conn=DBinfo.connDB();
 		state=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 				ResultSet.CONCUR_READ_ONLY);
@@ -75,79 +76,15 @@ public class SearchMedicineController {
 		} 
     }
     
-    void getCompanyMedicines(String companyName) throws SQLException, IOException {
-    	
-    	Statement state;
-		ResultSet rs;
-		
-		String strSelectOutOfStock = "SELECT * FROM `medicines` WHERE `company` = '"+companyName+"'";
-		
-		Connection conn=DBinfo.connDB();
-		state=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-				ResultSet.CONCUR_READ_ONLY);
-		rs=state.executeQuery(strSelectOutOfStock);
-		
-		while(rs.next()) {
-			FXMLLoader loaderMedicineCard = new FXMLLoader(getClass().getResource("/UserPages/MedicineCard.fxml"));
-	    	Parent root = loaderMedicineCard.load();
-
-	    	MedicineCardController medicineCardController = loaderMedicineCard.getController();
-			
-			medicineCardController.setMedicineCard(rs.getString("id"));
-			flowPaneContent.getChildren().addAll(root);
-		} 
+    void getCompanyMedicines(String strSelectCompanyMedicines) throws SQLException, IOException {
+    	getMedicines(strSelectCompanyMedicines);
     }
     
-    void getOutOfStockMedicines(String date) throws SQLException, IOException {
-    	Statement state;
-		ResultSet rs;
-		
-		String strSelectOutOfStock = "SELECT * FROM `medicines` WHERE `dateexpiary` < '"+date+"'";
-		
-		Connection conn=DBinfo.connDB();
-		state=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-				ResultSet.CONCUR_READ_ONLY);
-		rs=state.executeQuery(strSelectOutOfStock);
-		
-		while(rs.next()) {
-			FXMLLoader loaderMedicineCard = new FXMLLoader(getClass().getResource("/UserPages/MedicineCard.fxml"));
-	    	Parent root = loaderMedicineCard.load();
-
-	    	MedicineCardController medicineCardController = loaderMedicineCard.getController();
-			
-			medicineCardController.setMedicineCard(rs.getString("id"));
-			flowPaneContent.getChildren().addAll(root);
-		} 
-    }
-    
-    void getExpiaryThisMonth(String dateMorThan, String dateLessOrEqual) throws SQLException, IOException {
-    	Statement state;
-		ResultSet rs;
-    	
-    	String strSelectExpiaryThisMonth = "SELECT * FROM `medicines` WHERE (`dateexpiary` > '"+dateMorThan+"') AND (`dateexpiary` <= '"+dateLessOrEqual+"')"; 
-    	Connection conn=DBinfo.connDB();
-		state=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-				ResultSet.CONCUR_READ_ONLY);
-		rs=state.executeQuery(strSelectExpiaryThisMonth);
-    	
-		while(rs.next()) {
-			FXMLLoader loaderMedicineCard = new FXMLLoader(getClass().getResource("/UserPages/MedicineCard.fxml"));
-	    	Parent root = loaderMedicineCard.load();
-
-	    	MedicineCardController medicineCardController = loaderMedicineCard.getController();
-			
-			medicineCardController.setMedicineCard(rs.getString("id"));
-			flowPaneContent.getChildren().addAll(root);
-		} 
-    }
-    
-    void getMedicineSales() throws SQLException, IOException {
+    void getMedicineSales(String strSelectOutOfStock) throws SQLException, IOException {
     	
     	Statement state;
 		ResultSet rs;
-		
-		String strSelectOutOfStock = "SELECT * FROM `medicines`";
-		
+				
 		Connection conn=DBinfo.connDB();
 		state=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 				ResultSet.CONCUR_READ_ONLY);
@@ -165,12 +102,57 @@ public class SearchMedicineController {
     }
 
     @FXML
-    void serchMedicine(MouseEvent event) {
+    void serchMedicine(MouseEvent event) throws SQLException, IOException {
+    	String searchWord = tfSearch.getText();
+    	flowPaneContent.getChildren().clear();
+    	
+    	FXMLLoader loaderDashboard = new FXMLLoader(getClass().getResource("/fxml/Dashboard.fxml"));
+    	Parent root = loaderDashboard.load();
+    	DashboardController dashboardController = loaderDashboard.getController();
+    	    	
+    	switch (key) {
+			case "getExpiarythisMonth":
+				{
+					String gcTimeMore = dashboardController.getTimeMore();
+			    	String gcTimeLessOrEqual = dashboardController.getTimeLessOrEqual();
+			    	String strSelectExpiaryThisMonth = "SELECT * FROM `medicines` WHERE (`dateexpiary` > '"+gcTimeMore+"') AND (`dateexpiary` <= '"+gcTimeLessOrEqual+"') AND (`name` LIKE '"+searchWord+"%')"; 
+					getMedicines(strSelectExpiaryThisMonth);
+				}
+			break;
+			
+			case "getSimilarCompanies":
+				{
+			    	String strSelectSimilarCompanies = "SELECT DISTINCT `company` FROM `medicines` WHERE `company` LIKE '"+searchWord+"%'";
+					getCompanies(strSelectSimilarCompanies);
+				}
+			break;
+			
+			case "getOutOfStock":
+				{
+					String dateTimt = dashboardController.getDate();
+					String strSelectOutOfStock = "SELECT * FROM `medicines` WHERE `dateexpiary` < '"+dateTimt+"' AND `name` LIKE '"+searchWord+"%'";
+					getMedicines(strSelectOutOfStock);
+				}
+			break;
+			
+			case "getTotalSales":
+				{
+					String strSelectTotalSales = "SELECT * FROM `medicines` WHERE `name` LIKE '"+searchWord+"%'";
+					getMedicineSales(strSelectTotalSales);
+				}
+			break;
+	
+			default:
+				{
+					String strSelect = "SELECT `id` FROM medicines WHERE `name` LIKE '"+searchWord+"%'";
+					getMedicines(strSelect);
+				}
+			break;
+		}
 
     }
     
     void setTFsearch(String str) {
     	tfSearch.setText(str);
     }
-
 }

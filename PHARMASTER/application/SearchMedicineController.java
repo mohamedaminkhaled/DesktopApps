@@ -33,6 +33,7 @@ public class SearchMedicineController {
     private FlowPane flowPaneContent;
     
     String key = null;
+    String companyName;
     
     void getMedicines(String strSelect) throws SQLException, IOException {
     	
@@ -74,10 +75,6 @@ public class SearchMedicineController {
 	    	companyCardController.setCompanyCard(rs.getString("company"));
 			flowPaneContent.getChildren().addAll(root);
 		} 
-    }
-    
-    void getCompanyMedicines(String strSelectCompanyMedicines) throws SQLException, IOException {
-    	getMedicines(strSelectCompanyMedicines);
     }
     
     void getMedicineSales(String strSelectOutOfStock) throws SQLException, IOException {
@@ -141,6 +138,13 @@ public class SearchMedicineController {
 					getMedicineSales(strSelectTotalSales);
 				}
 			break;
+			
+			case "searchCompanyMedicines":
+			{
+				String strSearchCompanyMedicines = "SELECT * FROM `medicines` WHERE `company` = '"+companyName+"' AND `name` LIKE '"+searchWord+"%'";
+				getMedicines(strSearchCompanyMedicines);
+			}
+			break;
 	
 			default:
 				{
@@ -149,7 +153,6 @@ public class SearchMedicineController {
 				}
 			break;
 		}
-
     }
     
     void setTFsearch(String str) {

@@ -1,5 +1,6 @@
 package application;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,7 +9,9 @@ import java.sql.Statement;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -56,7 +59,15 @@ public class SellStockController {
     }
     
     @FXML
-    void confirmSellStock(MouseEvent event) throws SQLException {
+    void confirmSellStock(MouseEvent event) throws SQLException, IOException {
+    	if(quantityToSell.getText().equals("")) {
+        	FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminPages/RegisterUser.fxml"));
+        	Parent root = loader.load();
+        	RegisterUserController registerUserController = loader.getController();
+    		registerUserController.showErr("Error! Quantity to sell can't be Empty");
+    		return;
+    	}
+    	
     	int intQuantityToSell = Integer.parseInt(quantityToSell.getText());
     	int intCurrentQuantity = Integer.parseInt(currentQuantity.getText());
     	int newQuantity = intCurrentQuantity - intQuantityToSell;
@@ -84,12 +95,20 @@ public class SellStockController {
 		ps.setString(3, medicineID);
 		ps.executeUpdate();
 		
-		successMessage.setText("Operation performed successfully!");
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminPages/RegisterUser.fxml"));
+    	Parent root = loader.load();
+    	RegisterUserController registerUserController = loader.getController();
+    	
+    	Stage oldStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		oldStage.close();
+    	
+    	//Show success message
+    	registerUserController.showSuccess();
+		
     }
     
     void setCurrentQuantity(String str) {
     	currentQuantity.setText(str);
     }
-
 }
 

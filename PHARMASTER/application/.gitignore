@@ -16,3 +16,6 @@
 /CompanyCardController.class
 /SellStockController.class
 /SalesCardController.class
+/DeleteMedicineController.class
+/ErrorMessageController.class
+/SuccessMessageController.class

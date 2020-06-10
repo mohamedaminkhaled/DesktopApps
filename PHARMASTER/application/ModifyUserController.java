@@ -1,127 +1,139 @@
 package application;
 
-import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
 public class ModifyUserController {
 
     @FXML
-    private ImageView userImage;
+    TextField tfUserName;
 
     @FXML
-    private Button btnChoosImage;
+    PasswordField tfPassword;
 
     @FXML
-    private TextField tfFirstName;
+    PasswordField tfNewPassword;
 
-    @FXML
-    private TextField tfLastName;
-
-    @FXML
-    private TextField tfUserName;
-
-    @FXML
-    private Button btnCancelModifyUser;
-
-    @FXML
-    private Button btnModify;
-
-    @FXML
-    private PasswordField tfPassword;
-
-    @FXML
-    private PasswordField tfConfirmPasswoard;
-
-    @FXML
-    private RadioButton genderMale;
-
-    @FXML
-    private ToggleGroup gender;
-
-    @FXML
-    private RadioButton genderFemale;
-
-    @FXML
-    private RadioButton radioAdmin;
-
-    @FXML
-    private ToggleGroup gender1;
-
-    @FXML
-    private RadioButton radioPharmacist;
-    
-
-    @FXML
-    void cancelModifyUser(MouseEvent event) {
-    	tfFirstName.setText("");
-    	tfLastName.setText("");
+    private void cleareFields() {
     	tfUserName.setText("");
     	tfPassword.setText("");
-    	tfConfirmPasswoard.setText("");
-    	genderMale.setSelected(false);
-    	genderFemale.setSelected(false);
-    	radioAdmin.setSelected(false);
-    	radioPharmacist.setSelected(false);
-    	userImage.setImage(new Image("/resources/avatar2.jpg"));
+    	tfNewPassword.setText("");
     }
-
+    
     @FXML
-    void confirmModifyUser(MouseEvent event) throws SQLException {
+    void cancelModifyUser(MouseEvent event) throws IOException {
+    	cleareFields();
+    }
+    
+    @FXML
+    void deleteUser(MouseEvent event) throws IOException, SQLException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminPages/RegisterUser.fxml"));
+    	Parent root = loader.load();
+    	RegisterUserController registerUserController = loader.getController();
+    	
     	Connection conn=DBinfo.connDB();
-		
-		String strUpdate ="UPDATE `employees`" 
-				+ "SET `firstname`=?, `lastname`=?, `gender`=?,"  
-				+ "`jobtitle`=?, `username`=?, `username`=?, `image`=? "
-				+ " WHERE username =? AND passwoard =?";  
-		
-		PreparedStatement ps;
-		
-		ps = conn.prepareStatement(strUpdate);
-
-		ps.setString(1, tfFirstName.getText());
-		ps.setString(2, tfLastName.getText());
-		ps.setString(3, genderMale.isSelected() ? "male" : "femaile");
-		ps.setString(4, radioAdmin.isSelected() ? "admin" : "user");
-		ps.setString(5, tfUserName.getText());
-		ps.setString(6, tfPassword.getText());
-		ps.setString(7, userImage.getImage().getUrl());
-		ps.setString(8, tfUserName.getText());
-		ps.setString(9, tfPassword.getText());
+    	
+    	//validate user data
+    	//Error message for Username
+    	if(tfUserName.getText().isEmpty()) {
+    		registerUserController.showErr("Error! Username can't be Empty");
+    		return;
+    	}
+    	
+    	//Error message for Password
+    	if(tfPassword.getText().isEmpty()) {
+    		registerUserController.showErr("Error! Password can't be Empty");
+    		return;
+    	}
+    	
+    	//Username and Password must be found in Database
+		Statement stat = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+				ResultSet.CONCUR_READ_ONLY);
+		String strSelectUsers = "SELECT `id` FROM `employees` WHERE `username` = '"+tfUserName.getText()+"' AND `passwoard` = '"+tfPassword.getText()+"'";
+		ResultSet rs = stat.executeQuery(strSelectUsers);		
+		rs.first();
+		if(rs.getRow() == 0) {
+			registerUserController.showErr("Error! user not found");
+			return;
+		}
+    	    	
+		//After all validations above, update user data
+		String strUpdate ="DELETE FROM `employees` WHERE `username` =? AND `passwoard` =?";
+				
+		PreparedStatement ps = conn.prepareStatement(strUpdate);
+		ps.setString(1, tfUserName.getText());
+		ps.setString(2, tfPassword.getText());
 		ps.executeUpdate();
-		System.out.println("1 Row updated!");
+		
+		//clear all fields
+		cleareFields();
+		    	
+		//Show Success message after registration
+		registerUserController.showSuccess();
     }
 
     @FXML
-    void openImageChooser(MouseEvent event) {
-    	FileChooser fileChooser = new FileChooser();
-		fileChooser.getExtensionFilters().addAll(new
-			        FileChooser.ExtensionFilter("jpg", "*.jpg"),
-		            new FileChooser.ExtensionFilter("JPGE", "*.JPGE"),
-		            new FileChooser.ExtensionFilter("png", "*.png"));
+    void confirmModifyUser(MouseEvent event) throws SQLException, IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminPages/RegisterUser.fxml"));
+    	Parent root = loader.load();
+    	RegisterUserController registerUserController = loader.getController();
+    	
+    	Connection conn=DBinfo.connDB();
+    	
+    	//validate user data
+    	//Error message for Username
+    	if(tfUserName.getText().isEmpty()) {
+    		registerUserController.showErr("Error! Username can't be Empty");
+    		return;
+    	}
+    	
+    	//Error message for Password
+    	if(tfPassword.getText().isEmpty()) {
+    		registerUserController.showErr("Error! Password can't be Empty");
+    		return;
+    	}
+    	
+    	//Error message for Newpassword
+    	if(tfNewPassword.getText().isEmpty()) {
+    		registerUserController.showErr("Error! New Password can't be Empty");
+    		return;
+    	}
+    	    	
+    	//Username and Password must be found in Database
+		Statement stat = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+				ResultSet.CONCUR_READ_ONLY);
+		String strSelectUsers = "SELECT `id` FROM `employees` WHERE `username` = '"+tfUserName.getText()+"' AND `passwoard` = '"+tfPassword.getText()+"'";
+		ResultSet rs = stat.executeQuery(strSelectUsers);
 		
-		Stage stage = new Stage();
-		File selectedFile = fileChooser.showOpenDialog(stage);
-	     
-		 if(selectedFile != null) {
-			 String path = selectedFile.getAbsolutePath();		     
-			 path = path.replace("\\","/");
-			 Image image = new Image(new File(path).toURI().toString());
-			 userImage.setImage(image);
-		 }
+		if(!(rs.first())) {
+			registerUserController.showErr("Error! user not found");
+			return;
+		}
+    	    	
+		//After all validations above, update user data
+		String strUpdate ="UPDATE `employees` set `passwoard`=? WHERE `username` =? AND `passwoard` =?";  
+				
+		PreparedStatement ps = conn.prepareStatement(strUpdate);
+		ps.setString(1, tfNewPassword.getText());
+		ps.setString(2, tfUserName.getText());
+		ps.setString(3, tfPassword.getText());
+		ps.executeUpdate();
+		
+		//clear all fields
+		cleareFields();
+		    	
+		//Show Success message after registration
+		registerUserController.showSuccess();
     }
-
 }

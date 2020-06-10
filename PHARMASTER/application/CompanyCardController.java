@@ -30,6 +30,8 @@ public class CompanyCardController {
 		String strSelectCompanyMedicines = "SELECT * FROM `medicines` WHERE `company` = '"+companyName.getText()+"'";
     	
     	SearchMedicineController searchMedicineController = loaderViewMedicine.getController();
+    	searchMedicineController.companyName = companyName.getText();
+    	searchMedicineController.key = "searchCompanyMedicines";
     	searchMedicineController.getMedicines(strSelectCompanyMedicines);
     	
     	Scene scene=new Scene(root,839,543);

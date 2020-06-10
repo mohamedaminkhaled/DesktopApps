@@ -69,7 +69,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Button layoutY="150.0" mnemonicParsing="false" onMouseClicked="#getAddStock" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: Tan;" text="Add Stock" textFill="#723d3d">
+            <Button layoutY="150.0" mnemonicParsing="false" onMouseClicked="#getDeleteMedicine" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: Tan;" text="Delete" textFill="#723d3d">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

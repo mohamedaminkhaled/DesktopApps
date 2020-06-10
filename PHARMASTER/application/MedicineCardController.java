@@ -49,31 +49,19 @@ public class MedicineCardController {
     private Button btnViewMedicineDetails;
 
     @FXML
-    void getAddStock(MouseEvent event) throws IOException, SQLException {
-    	
-    	Statement state;
-		ResultSet rs;
-		
-		String strSelect = "SELECT `quantity` FROM medicines WHERE `id` = '"+medicineID.getText()+"'";
-		
-		Connection conn=DBinfo.connDB();
-		state=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-				ResultSet.CONCUR_READ_ONLY);
-		rs=state.executeQuery(strSelect);
-		rs.last();
+    void getDeleteMedicine(MouseEvent event) throws IOException, SQLException {
     	
     	Stage stage=new Stage();
 		
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/UserPages/AddStock.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/UserPages/DeleteMedicineConfirmation.fxml"));
 		Parent root = loader.load();
 		
-		AddStockController addStockController = loader.getController();
-		addStockController.setCurrentQuantity(rs.getString("quantity"));
-		addStockController.medicineID = medicineID.getText();
+		DeleteMedicineController deleteMedicineController = loader.getController();
+		deleteMedicineController.medicineID = medicineID.getText();
 		
-		Scene scene=new Scene(root,630,266);
+		Scene scene=new Scene(root,586,177);
 		stage.setScene(scene);
-		stage.initStyle(StageStyle.TRANSPARENT);
+		stage.initStyle(StageStyle.UTILITY);
 		stage.show();
     }
 

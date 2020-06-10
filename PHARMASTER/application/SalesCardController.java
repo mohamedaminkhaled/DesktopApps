@@ -54,6 +54,5 @@ public class SalesCardController {
 		medicineSales.setText(String.valueOf(sales));
 		medicineImage.setImage(new Image(rs.getString("image")));
     }
-
 }
 

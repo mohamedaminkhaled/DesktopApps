@@ -106,23 +106,7 @@ public class ClientController {
     }
 
     @FXML
-    void getLogout(MouseEvent event) {
-
-    }
-
-    @FXML
-    void getMyProfile(MouseEvent event) {
-
-    }
-
-    @FXML
-    void getSysInfo(MouseEvent event) {
-
-    }
-
-    @FXML
     void getViewMedicine(MouseEvent event) throws SQLException, IOException {
-    	
 		String strSelect = "SELECT `id` FROM medicines";
 
     	FXMLLoader loaderViewMedicine = new FXMLLoader(getClass().getResource("/UserPages/ViewMedicine.fxml"));
@@ -133,7 +117,6 @@ public class ClientController {
     	searchMedicineController.getMedicines(strSelect);
     	
     	borderPaneContent.setCenter(root);
-    	
     }
     
     @FXML
@@ -141,7 +124,6 @@ public class ClientController {
     	
     	Statement state;
 		ResultSet rs;
-		
 		
 		Connection conn=DBinfo.connDB();
 		state=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -208,7 +190,6 @@ public class ClientController {
     	// select price and sold
     	String selectPriceAndSold = "SELECT `price` , `sold` FROM `medicines`";
     	rs=state.executeQuery(selectPriceAndSold);
-    	rs.first();
     	int price, sold = 0;
     	int totalSales = 0;
     	

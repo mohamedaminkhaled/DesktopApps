@@ -61,10 +61,17 @@ public class AdminController {
 
     @FXML
     private Label similarCompany;
+    
+    FXMLLoader loader;
+    Stage stage;
+    Parent root;
+    Statement state;
+	ResultSet rs;
+	Connection conn;
 
     @FXML
     void close(MouseEvent event) {
-    	Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
     	stage.close();
     }
     
@@ -76,14 +83,14 @@ public class AdminController {
     
     @FXML
     void dragged(MouseEvent event) {
-    	Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
     	stage.setX(event.getScreenX() -x);
     	stage.setY(event.getScreenY() -y);
     }
     
     @FXML
     void max(MouseEvent event) {
-    	Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
     	stage.setFullScreenExitHint("");
     	if(!stage.isFullScreen()) {
     		stage.setFullScreen(true);
@@ -94,24 +101,20 @@ public class AdminController {
 
     @FXML
     void min(MouseEvent event) {
-    	Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	stage = (Stage)((Node)event.getSource()).getScene().getWindow();
     	stage.setIconified(true);
     }
     
     @FXML
     void setDashboard() throws IOException, SQLException {
-    	
-    	Statement state;
-		ResultSet rs;
-				
-		Connection conn=DBinfo.connDB();
+		conn=DBinfo.connDB();
 		state=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 				ResultSet.CONCUR_READ_ONLY);
 		    	
-    	FXMLLoader loaderDashboard = new FXMLLoader(getClass().getResource("/fxml/Dashboard.fxml"));
-    	Parent root = loaderDashboard.load();
+    	loader = new FXMLLoader(getClass().getResource("/fxml/Dashboard.fxml"));
+    	root = loader.load();
     	
-    	DashboardController dashboardController = loaderDashboard.getController();
+    	DashboardController dashboardController = loader.getController();
     	dashboardController.setWelcomeMessage("Welcom Dear Admin, "+adminName.getText());
     	
     	// select count of medicines
@@ -167,7 +170,6 @@ public class AdminController {
     	// select price and sold
     	String selectPriceAndSold = "SELECT `price` , `sold` FROM `medicines`";
     	rs=state.executeQuery(selectPriceAndSold);
-    	rs.first();
     	int price, sold = 0;
     	int totalSales = 0;
     	
@@ -182,30 +184,15 @@ public class AdminController {
     }
 
     @FXML
-    void getLogout(MouseEvent event) {
-
-    }
-
-    @FXML
-    void getModifyUser(MouseEvent event) {
-    	loadPage("/AdminPages/ModifyUser");
-    }
-
-    @FXML
-    void getMyProfile(MouseEvent event) {
-
+    void getModifyUser(MouseEvent event) throws IOException, SQLException {
+    	loadPage("/AdminPages/ModifyUser");   
     }
 
     @FXML
     void getRegisterUser(MouseEvent event) {
     	loadPage("/AdminPages/RegisterUser");
     }
-
-    @FXML
-    void getSysInfo(MouseEvent event) {
-    	loadPage("/AdminPages/SysInfo");
-    }
-    
+  
     void setAdminName(String str) {
     	adminName.setText(str);
     }

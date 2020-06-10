@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -16,11 +15,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -53,12 +49,12 @@ public class MainController {
     }
     
     @FXML
-    void register(MouseEvent event) {
-
-    }
-    
-    @FXML
     void login(MouseEvent event) throws IOException {
+    	FXMLLoader loader;
+    	Parent root;
+    	Stage stage = new Stage();
+    	Scene scene;
+    	
     	Connection conn;
 		Statement state;
 		ResultSet rs;
@@ -83,17 +79,14 @@ public class MainController {
 			String name = rs.getString("firstname");
 			
 			 if(str.equals(strUser)) {
-					
-				 	Stage stage = new Stage();
-					
-					FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Client.fxml"));
-			    	Parent root = loader.load();
+					loader = new FXMLLoader(getClass().getResource("/fxml/Client.fxml"));
+			    	root = loader.load();
 			    	
 			    	ClientController clientController = loader.getController();
 			    	clientController.setClientName(name);
 			    	clientController.setDashboard();
 			    	
-					Scene scene = new Scene(root,1180,750);					
+					scene = new Scene(root,1180,750);					
 					scene.getStylesheets().add(getClass().getResource("/styles/main.css").toExternalForm());
 					stage.setResizable(true);
 					stage.setScene(scene);
@@ -103,17 +96,14 @@ public class MainController {
 					oldStage.close();
 					stage.show();
 				}else if(str.equals(strAdmin)){
-										
-					Stage stage = new Stage();
-					
-					FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Admin.fxml"));
-			    	Parent root = loader.load();
+					loader = new FXMLLoader(getClass().getResource("/fxml/Admin.fxml"));
+					root = loader.load();
 			    	
 			    	AdminController adminController = loader.getController();
 			    	adminController.setAdminName(name);
 			    	adminController.setDashboard();
 					
-					Scene scene = new Scene(root,1180,750);
+					scene = new Scene(root,1180,750);
 					scene.getStylesheets().add(getClass().getResource("/styles/main.css").toExternalForm());
 					stage.setResizable(true);
 					stage.setScene(scene);
@@ -123,12 +113,14 @@ public class MainController {
 					oldStage.close();
 					
 					stage.show();
-
-			}else return ;
-			
+			}
 			
 		} catch (SQLException e) {
-			errException(e);
+			loader = new FXMLLoader(getClass().getResource("/AdminPages/RegisterUser.fxml"));
+	    	root = loader.load();
+	    	
+	    	RegisterUserController registerUserController = loader.getController();
+	    	registerUserController.showErr("Error! this user doesn't exist.");
 		}
     }
     

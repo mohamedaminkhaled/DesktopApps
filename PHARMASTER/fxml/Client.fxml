@@ -4,6 +4,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
@@ -13,7 +14,7 @@
 
 <BorderPane fx:id="client_page" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#dragged" onMousePressed="#pressed" prefHeight="750.0" prefWidth="1180.0" style="-fx-background-color: #C0C0C0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ClientController">
    <top>
-      <HBox alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="1100.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_RIGHT" prefHeight="32.0" prefWidth="1100.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
          <children>
             <FontAwesomeIconView fx:id="icon_iconize" fill="#62ceee" glyphName="MINUS" lineSpacing="10.0" onMouseClicked="#min" size="22" text="" wrappingWidth="26.285715103149414" />
             <FontAwesomeIconView fx:id="icon_fullscreen" fill="#f5c528" glyphName="CIRCLE" lineSpacing="10.0" onMouseClicked="#max" size="22" wrappingWidth="26.85714340209961" />
@@ -61,7 +62,7 @@
                   </HBox>
                   <HBox fx:id="hboxAddMedicine" alignment="CENTER_LEFT" onMouseClicked="#getAddMedicine" prefHeight="95.0" prefWidth="252.0" spacing="10.0">
                      <children>
-                        <FontAwesomeIconView fill="WHITE" glyphName="USER" size="30" />
+                        <FontAwesomeIconView fill="WHITE" glyphName="EDIT" size="30" />
                         <Label prefHeight="54.0" prefWidth="180.0" text="Add Medicine" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="20.0" />
@@ -74,21 +75,8 @@
                   </HBox>
                   <HBox fx:id="hboxViewMedicine" alignment="CENTER_LEFT" onMouseClicked="#getViewMedicine" prefHeight="95.0" prefWidth="252.0" spacing="10.0">
                      <children>
-                        <FontAwesomeIconView fill="WHITE" glyphName="EDIT" size="30" />
+                        <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" size="30" />
                         <Label prefHeight="46.0" prefWidth="150.0" text="View Medicine" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                     </children>
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
-                  </HBox>
-                  <HBox fx:id="hboxMyProfile" alignment="CENTER_LEFT" onMouseClicked="#getMyProfile" prefHeight="95.0" prefWidth="252.0" spacing="10.0">
-                     <children>
-                        <FontAwesomeIconView fill="WHITE" glyphName="USER" size="30" />
-                        <Label prefHeight="59.0" prefWidth="163.0" text="My Profile" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -240,4 +228,7 @@
          </center>
       </BorderPane>
    </center>
+   <effect>
+      <InnerShadow choke="0.5" height="39.0" radius="16.75" width="30.0" />
+   </effect>
 </BorderPane>

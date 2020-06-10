@@ -4,6 +4,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -13,11 +14,11 @@
 
 <BorderPane fx:id="page_1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#dragged" onMouseReleased="#pressed" prefHeight="580.0" prefWidth="876.0" style="-fx-background-color: #C0C0C0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MedicineDetailsController">
    <top>
-      <HBox alignment="CENTER_LEFT" prefHeight="19.0" prefWidth="1100.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="876.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
          <children>
-            <FontAwesomeIconView fx:id="icon_close" fill="#f80303" glyphName="CIRCLE" lineSpacing="10.0" onMouseClicked="#close" size="18" wrappingWidth="26.428571701049805" />
-            <FontAwesomeIconView fx:id="icon_fullscreen" fill="#f5c528" glyphName="CIRCLE" lineSpacing="10.0" onMouseClicked="#max" size="18" wrappingWidth="26.85714340209961" />
             <FontAwesomeIconView fx:id="icon_iconize" fill="#62ceee" glyphName="MINUS" lineSpacing="10.0" onMouseClicked="#min" size="20" text="" wrappingWidth="26.285715103149414" />
+            <FontAwesomeIconView fx:id="icon_fullscreen" fill="#f5c528" glyphName="CIRCLE" lineSpacing="10.0" onMouseClicked="#max" size="18" wrappingWidth="26.85714340209961" />
+            <FontAwesomeIconView fx:id="icon_close" fill="#f80303" glyphName="CIRCLE" lineSpacing="10.0" onMouseClicked="#close" size="18" wrappingWidth="26.428571701049805" />
          </children>
          <padding>
             <Insets bottom="3.0" left="5.0" right="3.0" top="3.0" />
@@ -146,4 +147,7 @@
          </children>
       </HBox>
    </bottom>
+   <effect>
+      <InnerShadow choke="0.5" height="30.0" radius="14.5" width="30.0" />
+   </effect>
 </BorderPane>

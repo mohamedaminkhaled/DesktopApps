@@ -19,3 +19,5 @@
 /DeleteMedicineController.class
 /ErrorMessageController.class
 /SuccessMessageController.class
+/ErrorServerNotFound.class
+/ChangePriceController.class

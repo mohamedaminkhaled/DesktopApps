@@ -48,16 +48,32 @@ public class MainController {
     	stage.close();
     }
     
+    FXMLLoader loader;
+    Parent root;
     @FXML
     void login(MouseEvent event) throws IOException {
-    	FXMLLoader loader;
-    	Parent root;
     	Stage stage = new Stage();
     	Scene scene;
     	
     	Connection conn;
 		Statement state;
 		ResultSet rs;
+		
+		loader = new FXMLLoader(getClass().getResource("/AdminPages/RegisterUser.fxml"));
+    	root = loader.load();
+    	RegisterUserController registerUserController = loader.getController();
+		
+		//Error message for empty username
+		if(tf_username.getText().isEmpty()) {
+			registerUserController.showErr("Error! username can't be empty");
+			return;
+		}
+		
+		//Error message for empty username
+		if(tf_passwoard.getText().isEmpty()) {
+			registerUserController.showErr("Error! password can't be empty");
+			return;
+		}
 		
 		String userName = tf_username.getText();
 		String passwoard = tf_passwoard.getText();
@@ -70,6 +86,13 @@ public class MainController {
 					ResultSet.CONCUR_READ_ONLY);
 			rs=state.executeQuery(strSelect);
 			rs.first();
+
+			//test if ResultSet is empty
+			if(rs.getRow() == 0) {
+				registerUserController.showErr("Error! username or password is wrong");
+				return;
+			}
+			
 			String str = new String(rs.getString("jobtitle"));
 			String strUser = new String("user");
 			String strAdmin = "admin";
@@ -111,25 +134,14 @@ public class MainController {
 					
 					Stage oldStage = (Stage)((Node)event.getSource()).getScene().getWindow();
 					oldStage.close();
-					
 					stage.show();
+			}else {
+		    	registerUserController.showErr("Error! this user doesn't exist.");
 			}
 			
 		} catch (SQLException e) {
-			loader = new FXMLLoader(getClass().getResource("/AdminPages/RegisterUser.fxml"));
-	    	root = loader.load();
-	    	
-	    	RegisterUserController registerUserController = loader.getController();
-	    	registerUserController.showErr("Error! this user doesn't exist.");
+			ErrorServerNotFound err = new ErrorServerNotFound();
+			err.errException(e);
 		}
     }
-    
-    public void errException(SQLException e) {
-		System.out.println("Error: "+e.getMessage());
-		System.out.println("code: "+e.getErrorCode());
-		System.out.println("state: "+e.getSQLState());
-		System.out.println("message: "+e.getLocalizedMessage());
-		
-	}
-
 }

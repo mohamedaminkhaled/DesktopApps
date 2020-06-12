@@ -107,7 +107,7 @@ public class MedicineDetailsController {
     }
     
     @FXML
-    void getAddStock(MouseEvent event) throws IOException, SQLException {
+    void getAddStock(MouseEvent event) throws IOException {
     	
     	Stage stage=new Stage();
 		
@@ -141,27 +141,50 @@ public class MedicineDetailsController {
 		stage.show();
     }
     
-    void setMedicineDetails(String id) throws SQLException {
+    @FXML
+    void getChangePrice(MouseEvent event) throws IOException {
+    	Stage stage=new Stage();
+		
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/UserPages/ChangePrice.fxml"));
+		Parent root = loader.load();
+		
+		ChangePriceController changePriceController = loader.getController();
+		changePriceController.setCurrentPrice(price.getText());
+		changePriceController.medicineID = medicineID.getText();
+	
+		Scene scene=new Scene(root,630,266);
+		stage.setScene(scene);
+		stage.initStyle(StageStyle.TRANSPARENT);
+		stage.show();
+    }
+    
+    void setMedicineDetails(String id) throws IOException {
     	Statement state;
 		ResultSet rs;
 		
 		String strSelect = "SELECT * FROM medicines WHERE `id` = '"+id+"'";
 		
-		Connection conn=DBinfo.connDB();
-		state=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-				ResultSet.CONCUR_READ_ONLY);
-		rs=state.executeQuery(strSelect);
-		rs.last();
-		
-		//assign values to card attributes
-		medicineName.setText(rs.getString("name"));
-		medicineID.setText(rs.getString("id"));
-		dateManufact.setText(rs.getString("datemanifact"));
-		dateExpiary.setText(rs.getString("dateexpiary"));
-		price.setText(rs.getString("price"));
-		companyName.setText(rs.getString("company"));
-		quantity.setText(rs.getString("quantity"));
-		batch.setText(rs.getString("batch"));
-		medicineImage.setImage(new Image(rs.getString("image")));
+		try {
+			Connection conn=DBinfo.connDB();
+			state=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_READ_ONLY);
+			rs=state.executeQuery(strSelect);
+			rs.last();
+			
+			//assign values to card attributes
+			medicineName.setText(rs.getString("name"));
+			medicineID.setText(rs.getString("id"));
+			dateManufact.setText(rs.getString("datemanifact"));
+			dateExpiary.setText(rs.getString("dateexpiary"));
+			price.setText(rs.getString("price"));
+			companyName.setText(rs.getString("company"));
+			quantity.setText(rs.getString("quantity"));
+			batch.setText(rs.getString("batch"));
+			medicineImage.setImage(new Image(rs.getString("image")));
+		} catch (SQLException e) {
+			ErrorServerNotFound err = new ErrorServerNotFound();
+			err.errException(e);
+			return;
+		}
     }
 }

@@ -51,9 +51,9 @@ public class DashboardController {
 
     @FXML
     private Button btnsimilarCompanies;
-    
+        
     @FXML
-    void getExpiarythisMonth(MouseEvent event) throws SQLException, IOException {
+    void getExpiarythisMonth(MouseEvent event) throws IOException {
     	Stage stage = new Stage();
     	FXMLLoader loaderViewMedicine = new FXMLLoader(getClass().getResource("/UserPages/ViewMedicine.fxml"));
     	Parent root = loaderViewMedicine.load();
@@ -73,7 +73,7 @@ public class DashboardController {
     }
 
     @FXML
-    void getOutOfStock(MouseEvent event) throws IOException, SQLException {
+    void getOutOfStock(MouseEvent event) throws IOException {
     	Stage stage = new Stage();
     	FXMLLoader loaderViewMedicine = new FXMLLoader(getClass().getResource("/UserPages/ViewMedicine.fxml"));
     	Parent root = loaderViewMedicine.load();
@@ -132,7 +132,7 @@ public class DashboardController {
     }
 
     @FXML
-    void getSimilarCompanies(MouseEvent event) throws IOException, SQLException {
+    void getSimilarCompanies(MouseEvent event) throws IOException {
     	String strSelectSimilarCompanies = "SELECT DISTINCT `company` FROM `medicines`";
 
     	Stage stage = new Stage();
@@ -150,7 +150,7 @@ public class DashboardController {
     }
 
     @FXML
-    void getTotalMedicines(MouseEvent event) throws IOException, SQLException {
+    void getTotalMedicines(MouseEvent event) throws IOException {
 		String strSelect = "SELECT `id` FROM medicines";
 
     	Stage stage = new Stage();
@@ -160,7 +160,7 @@ public class DashboardController {
     	SearchMedicineController searchMedicineController = loaderViewMedicine.getController();
     	searchMedicineController.key = "getTotalMedicines";
     	searchMedicineController.getMedicines(strSelect);
-    	
+    	    	
     	Scene scene=new Scene(root,839,543);
 		stage.setScene(scene);
 		stage.initStyle(StageStyle.UTILITY);
@@ -168,7 +168,7 @@ public class DashboardController {
     }
 
     @FXML
-    void getTotalSales(MouseEvent event) throws IOException, SQLException {
+    void getTotalSales(MouseEvent event) throws IOException {
 		String strSelectTotalSales = "SELECT * FROM `medicines`";
     	
     	Stage stage = new Stage();

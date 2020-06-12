@@ -1,5 +1,6 @@
 package application;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -42,13 +43,19 @@ public class DeleteMedicineController {
 	}
 
 	@FXML
-    void deleteMedicine(MouseEvent event) throws SQLException {
-		Connection conn=DBinfo.connDB();
-    	
-    	String strUpdate ="DELETE FROM `medicines` WHERE `id` =?";  
-		PreparedStatement ps = conn.prepareStatement(strUpdate);
-		ps.setString(1, medicineID);
-		ps.executeUpdate();
+    void deleteMedicine(MouseEvent event) throws IOException {
+		try {
+			Connection conn=DBinfo.connDB();
+			
+			String strUpdate ="DELETE FROM `medicines` WHERE `id` =?";  
+			PreparedStatement ps = conn.prepareStatement(strUpdate);
+			ps.setString(1, medicineID);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			ErrorServerNotFound err = new ErrorServerNotFound();
+			err.errException(e);
+			return;
+		}
 		
 		labelsVBox.getChildren().remove(label1);
 		label2.setText("Medicine Deleted Successfully");

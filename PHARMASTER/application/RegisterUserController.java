@@ -97,9 +97,7 @@ public class RegisterUserController {
     }
 
     @FXML
-    void confirmRegisterUser(MouseEvent event) throws SQLException, IOException {    	
-    	Connection conn=DBinfo.connDB();
-    	
+    void confirmRegisterUser(MouseEvent event) throws IOException {    	
     	//validate user data
     	//Error message for first name
     	if(tfFisrtName.getText().isEmpty()) {
@@ -132,51 +130,58 @@ public class RegisterUserController {
     	}
     	    	    	    	    	
     	//Username can't be repeated in Database
-		Statement stat = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-				ResultSet.CONCUR_READ_ONLY);
-		String strSelectUsers = "SELECT `username` FROM `employees`";
-		ResultSet rs = stat.executeQuery(strSelectUsers);
-		rs.first();
-		
-		do {
-			if(tfUserName.getText().equals(rs.getString("username"))){
-				showErr("Error! Username already existed");
-	    		return;
+    	try {
+			Connection conn=DBinfo.connDB();
+			Statement stat = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_READ_ONLY);
+			String strSelectUsers = "SELECT `username` FROM `employees`";
+			ResultSet rs = stat.executeQuery(strSelectUsers);
+			rs.first();
+			
+			do {
+				if(tfUserName.getText().equals(rs.getString("username"))){
+					showErr("Error! Username already existed");
+					return;
+				}
 			}
-		}
-		while(rs.next());
-		
-		//Error message for Password
-    	if(tfPasswoard.getText().isEmpty()) {
-    		showErr("Error! Password can't be Empty");
-    		return;
-    	}
-		
-		//Error message for confirm Password
-    	if(tfConfirmPasswoard.getText().isEmpty()) {
-    		showErr("Error! Confirm Password can't be Empty");
-    		return;
-    	}
+			while(rs.next());
+			
+			//Error message for Password
+			if(tfPasswoard.getText().isEmpty()) {
+				showErr("Error! Password can't be Empty");
+				return;
+			}
+			
+			//Error message for confirm Password
+			if(tfConfirmPasswoard.getText().isEmpty()) {
+				showErr("Error! Confirm Password can't be Empty");
+				return;
+			}
 
-    	if(!(tfConfirmPasswoard.getText().equals(tfPasswoard.getText()))) {
-    		showErr("Error! Pssword and Confirm Password must be tepical");
-    		return;
-    	}
-    	
-    	//After all validation tests above, Register user 
-		String sql="INSERT INTO `employees`(`firstname`, `lastname`, "
-    			+ "`gender`, `jobtitle`, `username`, `passwoard`, `image`) "
-				+ "VALUES (?,?,?,?,?,?,?)";		
-		
-		PreparedStatement ps = conn.prepareStatement(sql);
-		ps.setString(1, tfFisrtName.getText());
-		ps.setString(2, tfLastName.getText());
-		ps.setString(3, radioMale.isSelected() ? "male" : "femaile");
-		ps.setString(4, radioAdmin.isSelected() ? "admin" : "user");
-		ps.setString(5, tfUserName.getText());
-		ps.setString(6, tfPasswoard.getText());
-		ps.setString(7, userImage.getImage().getUrl());
-		ps.executeUpdate();
+			if(!(tfConfirmPasswoard.getText().equals(tfPasswoard.getText()))) {
+				showErr("Error! Pssword and Confirm Password must be tepical");
+				return;
+			}
+			
+			//After all validation tests above, Register user 
+			String sql="INSERT INTO `employees`(`firstname`, `lastname`, "
+					+ "`gender`, `jobtitle`, `username`, `passwoard`, `image`) "
+					+ "VALUES (?,?,?,?,?,?,?)";		
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, tfFisrtName.getText());
+			ps.setString(2, tfLastName.getText());
+			ps.setString(3, radioMale.isSelected() ? "male" : "femaile");
+			ps.setString(4, radioAdmin.isSelected() ? "admin" : "user");
+			ps.setString(5, tfUserName.getText());
+			ps.setString(6, tfPasswoard.getText());
+			ps.setString(7, userImage.getImage().getUrl());
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			ErrorServerNotFound err = new ErrorServerNotFound();
+			err.errException(e);
+			return;
+		}
 		
 		//clear all fields
 		cleareFields();
@@ -230,11 +235,4 @@ public class RegisterUserController {
 			 userImage.setImage(image);
 		 }
     }
-    
-    public void errException(SQLException e) {
-		System.out.println("Error: "+e.getMessage());
-		System.out.println("code: "+e.getErrorCode());
-		System.out.println("state: "+e.getSQLState());
-		System.out.println("message: "+e.getLocalizedMessage());
-	}
 }

@@ -1,5 +1,6 @@
 package application;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,28 +32,34 @@ public class SalesCardController {
     @FXML
     private Label medicineSales;
     
-    void setSalesCard(String id) throws SQLException {
+    void setSalesCard(String id) throws IOException {
 		Statement state;
 		ResultSet rs;
 		
 		String strSelect = "SELECT * FROM medicines WHERE `id` = '"+id+"'";
 		
-		Connection conn=DBinfo.connDB();
-		state=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-				ResultSet.CONCUR_READ_ONLY);
-		rs=state.executeQuery(strSelect);
-		rs.last();
-		
-		int price = rs.getInt("price");
-		int sold = rs.getInt("sold");
-		int sales = price * sold;
-		
-		//assign values to card attributes
-		medicineName.setText(rs.getString("name"));
-		medicinePrice.setText(rs.getString("price"));
-		quantitySold.setText(rs.getString("sold"));
-		medicineSales.setText(String.valueOf(sales));
-		medicineImage.setImage(new Image(rs.getString("image")));
+		try {
+			Connection conn=DBinfo.connDB();
+			state=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_READ_ONLY);
+			rs=state.executeQuery(strSelect);
+			rs.last();
+			
+			int price = rs.getInt("price");
+			int sold = rs.getInt("sold");
+			int totalSales = (price * sold);
+			
+			//assign values to card attributes
+			medicineName.setText(rs.getString("name"));
+			medicinePrice.setText(rs.getString("price"));
+			quantitySold.setText(rs.getString("sold"));
+			medicineSales.setText(String.valueOf(totalSales));
+			medicineImage.setImage(new Image(rs.getString("image")));
+		} catch (SQLException e) {
+			ErrorServerNotFound err = new ErrorServerNotFound();
+			err.errException(e);
+			return;
+		}
     }
 }
 

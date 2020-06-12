@@ -61,7 +61,7 @@ public class AddStockController {
     }
     
     @FXML
-    void confirmAddStock(MouseEvent event) throws SQLException, IOException {
+    void confirmAddStock(MouseEvent event) throws IOException {
     	if(quantityToAdd.getText().equals("")) {
         	FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminPages/RegisterUser.fxml"));
         	Parent root = loader.load();
@@ -75,17 +75,23 @@ public class AddStockController {
     	int newQuantity = intCurrentQuantity + intQuantityToAdd;
     	String strNewQuantity = String.valueOf(newQuantity);
     	
-    	Connection conn=DBinfo.connDB();
-    	
-    	String strUpdate ="UPDATE `medicines` SET `quantity`=? WHERE `id`=?";  
-		PreparedStatement ps = conn.prepareStatement(strUpdate);
-		ps.setString(1, strNewQuantity);
-		ps.setString(2, medicineID);
-		ps.executeUpdate();
-		
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminPages/RegisterUser.fxml"));
     	Parent root = loader.load();
     	RegisterUserController registerUserController = loader.getController();
+    	
+    	try {
+			Connection conn=DBinfo.connDB();
+			
+			String strUpdate ="UPDATE `medicines` SET `quantity`=? WHERE `id`=?";  
+			PreparedStatement ps = conn.prepareStatement(strUpdate);
+			ps.setString(1, strNewQuantity);
+			ps.setString(2, medicineID);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			ErrorServerNotFound err = new ErrorServerNotFound();
+			err.errException(e);
+			return;
+			}
     	
     	Stage oldStage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		oldStage.close();

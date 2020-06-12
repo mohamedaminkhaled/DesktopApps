@@ -22,7 +22,7 @@ public class CompanyCardController {
     private BorderPane borderPaneCompanyCard;
 
     @FXML
-    void viewMedicines(MouseEvent event) throws IOException, SQLException {
+    void viewMedicines(MouseEvent event) throws IOException {
     	Stage stage = new Stage();
     	FXMLLoader loaderViewMedicine = new FXMLLoader(getClass().getResource("/UserPages/ViewMedicine.fxml"));
     	Parent root = loaderViewMedicine.load();
@@ -32,7 +32,9 @@ public class CompanyCardController {
     	SearchMedicineController searchMedicineController = loaderViewMedicine.getController();
     	searchMedicineController.companyName = companyName.getText();
     	searchMedicineController.key = "searchCompanyMedicines";
+
     	searchMedicineController.getMedicines(strSelectCompanyMedicines);
+		
     	
     	Scene scene=new Scene(root,839,543);
 		stage.setScene(scene);

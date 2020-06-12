@@ -20,7 +20,7 @@
          <children>
             <ImageView fitHeight="90.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Desktop/tip.jpg" />
+                  <Image url="@../resources/tip.jpg" />
                </image>
                <effect>
                   <InnerShadow choke="0.91" color="SILVER" height="46.09" radius="19.9775" width="35.82" />

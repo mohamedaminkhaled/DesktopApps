@@ -12,14 +12,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-public class SellStockController {
-
+public class ChangePriceController {
     @FXML
     private BorderPane addStockPage;
 
@@ -27,16 +25,12 @@ public class SellStockController {
     private FontAwesomeIconView icon_close;
 
     @FXML
-    private TextField currentQuantity;
+    private TextField currentPrice;
 
     @FXML
-    private TextField quantityToSell;
+    private TextField newPrice;
 
-    @FXML
-    private Label successMessage;
-    
     String medicineID = null;
-    
     double x, y;
     
     @FXML
@@ -59,42 +53,28 @@ public class SellStockController {
     }
     
     @FXML
-    void confirmSellStock(MouseEvent event) throws IOException {
-    	if(quantityToSell.getText().equals("")) {
+    void confirmChangePrice(MouseEvent event) throws IOException {
+    	
+    	if(newPrice.getText().equals("")) {
         	FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminPages/RegisterUser.fxml"));
         	Parent root = loader.load();
         	RegisterUserController registerUserController = loader.getController();
-    		registerUserController.showErr("Error! Quantity to sell can't be Empty");
+    		registerUserController.showErr("Error! Enter New Price");
     		return;
     	}
-    	
-    	int intQuantityToSell = Integer.parseInt(quantityToSell.getText());
-    	int intCurrentQuantity = Integer.parseInt(currentQuantity.getText());
-    	int newQuantity = intCurrentQuantity - intQuantityToSell;
-    	String strNewQuantity = String.valueOf(newQuantity);
-    	
+    		
     	try {
 			Connection conn=DBinfo.connDB();
-			ResultSet rs;
 			
-			String selectSold = "SELECT * FROM `medicines` WHERE `id`= '"+medicineID+"'";
+			int sold = 0;
+			String strSold = String.valueOf(sold);
 			
-			Statement state=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-					ResultSet.CONCUR_READ_ONLY);
-			rs=state.executeQuery(selectSold);
-			rs.first();
-			
-			int selectedSold = rs.getInt("sold");
-			int sold = intQuantityToSell + selectedSold;
-			
-			String strsold = String.valueOf(sold);
-			
-			String strUpdate ="UPDATE `medicines` SET `quantity`=? , `sold`=? WHERE `id`=?" ;  
+			String strUpdate ="UPDATE `medicines` SET `price`=? , `sold`=? WHERE `id`=?" ;  
 			PreparedStatement ps = conn.prepareStatement(strUpdate);
-			ps.setString(1, strNewQuantity);
-			ps.setString(2, strsold);
+			ps.setString(1, newPrice.getText());
+			ps.setString(2, strSold);
 			ps.setString(3, medicineID);
-			ps.executeUpdate();			
+			ps.executeUpdate();
 		} catch (SQLException e) {
 			ErrorServerNotFound err = new ErrorServerNotFound();
 			err.errException(e);
@@ -110,10 +90,9 @@ public class SellStockController {
     	
     	//Show success message
     	registerUserController.showSuccess();
-		
     }
     
-    void setCurrentQuantity(String str) {
-    	currentQuantity.setText(str);
+    void setCurrentPrice(String str) {
+    	currentPrice.setText(str);
     }
 }

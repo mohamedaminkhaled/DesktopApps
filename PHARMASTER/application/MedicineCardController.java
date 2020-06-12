@@ -49,7 +49,7 @@ public class MedicineCardController {
     private Button btnViewMedicineDetails;
 
     @FXML
-    void getDeleteMedicine(MouseEvent event) throws IOException, SQLException {
+    void getDeleteMedicine(MouseEvent event) throws IOException {
     	
     	Stage stage=new Stage();
 		
@@ -66,7 +66,7 @@ public class MedicineCardController {
     }
 
     @FXML
-    void getMedicineDetails(MouseEvent event) throws IOException, SQLException {
+    void getMedicineDetails(MouseEvent event) throws IOException {
     	
     	Stage stage=new Stage();
 		
@@ -83,24 +83,30 @@ public class MedicineCardController {
 		stage.show();
     }
     
-    void setMedicineCard(String id) throws SQLException {
+    void setMedicineCard(String id) throws IOException {
 		Statement state;
 		ResultSet rs;
 		
 		String strSelect = "SELECT * FROM medicines WHERE `id` = '"+id+"'";
 		
-		Connection conn=DBinfo.connDB();
-		state=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-				ResultSet.CONCUR_READ_ONLY);
-		rs=state.executeQuery(strSelect);
-		rs.last();
-		
-		//assign values to card attributes
-		medicineName.setText(rs.getString("name"));
-		medicineID.setText(rs.getString("id"));
-		medicineDateManufact.setText(rs.getString("datemanifact"));
-		medicineDateExpiary.setText(rs.getString("dateexpiary"));
-		medicinePrice.setText(rs.getString("price"));
-		medicineImage.setImage(new Image(rs.getString("image")));
+		try {
+			Connection conn=DBinfo.connDB();
+			state=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_READ_ONLY);
+			rs=state.executeQuery(strSelect);
+			rs.last();
+			
+			//assign values to card attributes
+			medicineName.setText(rs.getString("name"));
+			medicineID.setText(rs.getString("id"));
+			medicineDateManufact.setText(rs.getString("datemanifact"));
+			medicineDateExpiary.setText(rs.getString("dateexpiary"));
+			medicinePrice.setText(rs.getString("price"));
+			medicineImage.setImage(new Image(rs.getString("image")));
+		} catch (SQLException e) {
+			ErrorServerNotFound err = new ErrorServerNotFound();
+			err.errException(e);
+			return;
+		}
     }   
 }

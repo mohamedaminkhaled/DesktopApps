@@ -1,10 +1,10 @@
 
-#btn_submit, #exit, #register:hover{
+#btn_submit, #exit:hover{
 	-fx-cursor:hand;
 }
 
 .root{
-	-fx-background-image:url('login_small.JPG') ;
+	-fx-background-image:url('land_4.JPG') ;
 }
 
 #btn_submit{

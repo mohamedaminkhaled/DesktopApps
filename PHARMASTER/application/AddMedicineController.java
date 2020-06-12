@@ -76,7 +76,7 @@ public class AddMedicineController {
     }
 
     @FXML
-    void confirmAddMedicine(MouseEvent event) throws SQLException, IOException {
+    void confirmAddMedicine(MouseEvent event) throws IOException {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminPages/RegisterUser.fxml"));
     	Parent root = loader.load();
     	RegisterUserController registerUserController = loader.getController();
@@ -87,88 +87,94 @@ public class AddMedicineController {
     		return;
     	}
     	
-    	//MedicineID can't be repeated in Database
-    	Connection conn=DBinfo.connDB();
-    	Statement stat = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-				ResultSet.CONCUR_READ_ONLY);
-		String strSelectMedicine = "SELECT `id` FROM `medicines`";
-		ResultSet rs = stat.executeQuery(strSelectMedicine);
-		
-		while(rs.next()) {
-			if(tfMedicineID.getText().equals(rs.getString("id"))){
-				registerUserController.showErr("Error! This medicine already existed");
-	    		return;
+    	try {
+			//MedicineID can't be repeated in Database
+			Connection conn=DBinfo.connDB();
+			Statement stat = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_READ_ONLY);
+			String strSelectMedicine = "SELECT `id` FROM `medicines`";
+			ResultSet rs = stat.executeQuery(strSelectMedicine);
+			
+			while(rs.next()) {
+				if(tfMedicineID.getText().equals(rs.getString("id"))){
+					registerUserController.showErr("Error! This medicine already existed");
+					return;
+				}
 			}
-		}
-    	
-    	//Error message for medicine name
-    	if(tfMedicineName.getText().isEmpty()) {
-    		registerUserController.showErr("Error! Medicine Name can't be Empty");
-    		return;
-    	}
-    	
-    	//Error message for company name
-    	if(tfCompany.getText().isEmpty()) {
-    		registerUserController.showErr("Error! field Company can't be Empty");
-    		return;
-    	}
-    	
-    	//Error message batch
-    	if(tfBatch.getText().isEmpty()) {
-    		registerUserController.showErr("Error! field Batch can't be Empty");
-    		return;
-    	}
-    	
-    	//Error message for manufacturing date
-    	if(!(datepickerManufact.getValue() != null)) {
-    		registerUserController.showErr("Error! Date of Manufacture can't be Empty");
-    		return;
-    	}
-    	
-    	//Error message expiary date
-    	if(!(datepickerExpire.getValue() != null)) {
-    		registerUserController.showErr("Error! Date of Expiary can't be Empty");
-    		return;
-    	}
-    	
-    	//Error message expiary date
-    	if((datepickerExpire.getValue().isEqual(datepickerManufact.getValue()))
-    			|| (datepickerExpire.getValue().isBefore(datepickerManufact.getValue()))) {
-    		registerUserController.showErr("Error! Date of Expiary must be after Date of Manufacture");
-    		return;
-    	}
-    	
-    	//Error message for price
-    	if(tfPrice.getText().isEmpty()) {
-    		registerUserController.showErr("Error! field Price can't be Empty");
-    		return;
-    	}
-    	
-    	//Error message for quantity
-    	if(tfQuantity.getText().isEmpty()) {
-    		registerUserController.showErr("Error! field Quantity can't be Empty");
-    		return;
-    	}
-    	    	
-    	//After all validation tests above, Register the Medicine
-		String sql="INSERT INTO `medicines`(`id`,`name`, `company`, "
-    			+ "`batch`, `datemanifact`, `dateexpiary`, `price`,`quantity`,`sold`,`image`) "
-				+ "VALUES (?,?,?,?,?,?,?,?,?,?)";
-		PreparedStatement ps;
-		
-		ps = conn.prepareStatement(sql);
+			
+			//Error message for medicine name
+			if(tfMedicineName.getText().isEmpty()) {
+				registerUserController.showErr("Error! Medicine Name can't be Empty");
+				return;
+			}
+			
+			//Error message for company name
+			if(tfCompany.getText().isEmpty()) {
+				registerUserController.showErr("Error! field Company can't be Empty");
+				return;
+			}
+			
+			//Error message batch
+			if(tfBatch.getText().isEmpty()) {
+				registerUserController.showErr("Error! field Batch can't be Empty");
+				return;
+			}
+			
+			//Error message for manufacturing date
+			if(!(datepickerManufact.getValue() != null)) {
+				registerUserController.showErr("Error! Date of Manufacture can't be Empty");
+				return;
+			}
+			
+			//Error message expiary date
+			if(!(datepickerExpire.getValue() != null)) {
+				registerUserController.showErr("Error! Date of Expiary can't be Empty");
+				return;
+			}
+			
+			//Error message expiary date
+			if((datepickerExpire.getValue().isEqual(datepickerManufact.getValue()))
+					|| (datepickerExpire.getValue().isBefore(datepickerManufact.getValue()))) {
+				registerUserController.showErr("Error! Date of Expiary must be after Date of Manufacture");
+				return;
+			}
+			
+			//Error message for price
+			if(tfPrice.getText().isEmpty()) {
+				registerUserController.showErr("Error! field Price can't be Empty");
+				return;
+			}
+			
+			//Error message for quantity
+			if(tfQuantity.getText().isEmpty()) {
+				registerUserController.showErr("Error! field Quantity can't be Empty");
+				return;
+			}
+			    	
+			//After all validation tests above, Register the Medicine
+			String sql="INSERT INTO `medicines`(`id`,`name`, `company`, "
+					+ "`batch`, `datemanifact`, `dateexpiary`, `price`,`quantity`,`sold`,`image`) "
+					+ "VALUES (?,?,?,?,?,?,?,?,?,?)";
+			PreparedStatement ps;
+			
+			ps = conn.prepareStatement(sql);
 
-		ps.setString(1, tfMedicineID.getText());
-		ps.setString(2, tfMedicineName.getText());
-		ps.setString(3, tfCompany.getText());
-		ps.setString(4, tfBatch.getText());
-		ps.setString(5, datepickerManufact.getValue().toString());
-		ps.setString(6, datepickerExpire.getValue().toString());
-		ps.setString(7, tfPrice.getText());
-		ps.setString(8, tfQuantity.getText());
-		ps.setInt(9, 0);
-		ps.setString(10, medicineImage.getImage().getUrl());
-		ps.executeUpdate();
+			ps.setString(1, tfMedicineID.getText());
+			ps.setString(2, tfMedicineName.getText());
+			ps.setString(3, tfCompany.getText());
+			ps.setString(4, tfBatch.getText());
+			ps.setString(5, datepickerManufact.getValue().toString());
+			ps.setString(6, datepickerExpire.getValue().toString());
+			ps.setString(7, tfPrice.getText());
+			ps.setString(8, tfQuantity.getText());
+			ps.setInt(9, 0);
+			ps.setString(10, medicineImage.getImage().getUrl());
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			ErrorServerNotFound err = new ErrorServerNotFound();
+			err.errException(e);
+			return;
+		}
 		
 		//clear all fields
 		cleareFields();

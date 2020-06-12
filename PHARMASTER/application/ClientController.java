@@ -120,85 +120,94 @@ public class ClientController {
     }
     
     @FXML
-    void setDashboard() throws IOException, SQLException {
+    void setDashboard() throws IOException {
     	
     	Statement state;
 		ResultSet rs;
 		
-		Connection conn=DBinfo.connDB();
-		state=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-				ResultSet.CONCUR_READ_ONLY);
-		
-    	FXMLLoader loaderDashboard = new FXMLLoader(getClass().getResource("/fxml/Dashboard.fxml"));
-    	Parent root = loaderDashboard.load();
-    	
-    	DashboardController dashboardController = loaderDashboard.getController();
-    	dashboardController.setWelcomeMessage("Welcom, "+clientName.getText());
-    	
-    	String strSelectTotalMedicines = "SELECT * FROM medicines";
+		Parent root;
+		DashboardController dashboardController;
+		int totalSales;
+		try {
+			Connection conn=DBinfo.connDB();
+			state=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_READ_ONLY);
+			
+			FXMLLoader loaderDashboard = new FXMLLoader(getClass().getResource("/fxml/Dashboard.fxml"));
+			root = loaderDashboard.load();
+			
+			dashboardController = loaderDashboard.getController();
+			dashboardController.setWelcomeMessage("Welcom, "+clientName.getText());
+			
+			String strSelectTotalMedicines = "SELECT * FROM medicines";
 
-		rs=state.executeQuery(strSelectTotalMedicines);
-		rs.last();
-		int totalMedicines = rs.getRow();
-    	
-    	dashboardController.setTotalMedicine(String.valueOf(totalMedicines));
+			rs=state.executeQuery(strSelectTotalMedicines);
+			rs.last();
+			int totalMedicines = rs.getRow();
+			
+			dashboardController.setTotalMedicine(String.valueOf(totalMedicines));
 
-    	String strSelectSimilarCompanies = "SELECT DISTINCT `company` FROM `medicines`";
-		rs=state.executeQuery(strSelectSimilarCompanies);
-		rs.last();
-		int intSimilarCompanies = rs.getRow();
-    	
-    	dashboardController.setSimilarCompanies(String.valueOf(intSimilarCompanies));
-    	
-    	Date date = new Date();
-		DateFormat dateFormate = new SimpleDateFormat("yyyy/MM/dd");
-		String dateTimt = dateFormate.format(date);
-		dateTimt = dateTimt.replace("/","-");
-    	
-		// select medicines out of stock
-		String strSelectOutOfStock = "SELECT * FROM `medicines` WHERE `dateexpiary` < '"+dateTimt+"'";
-		rs=state.executeQuery(strSelectOutOfStock);
-		rs.last();
-		int intOutOfStock = rs.getRow();
-    	
-    	dashboardController.setOutOfStock(String.valueOf(intOutOfStock));
-    	
-    	//select expiary this month
-		String strFullDate = dateFormate.format(date);
-		String strYear = strFullDate.substring(0, 4);
-		int intYear = Integer.parseInt(strYear);
-		
-		GregorianCalendar gc = new GregorianCalendar(intYear, date.getMonth(), 0);
-    	date = gc.getTime();
-    	String gcTimeMore = dateFormate.format(date);
-    	gcTimeMore = gcTimeMore.replace("/","-");
-    	
-    	GregorianCalendar gc2 = new GregorianCalendar(intYear, date.getMonth()+2, 0);
-    	date = gc2.getTime();
-    	String gcTimeLessOrEqual = dateFormate.format(date);
-    	gcTimeLessOrEqual = gcTimeLessOrEqual.replace("/","-");
-    	
-    	
-    	
-    	String strSelectExpiaryThisMonth = "SELECT * FROM `medicines` WHERE (`dateexpiary` > '"+gcTimeMore+"') AND (`dateexpiary` <= '"+gcTimeLessOrEqual+"')"; 
-    	rs=state.executeQuery(strSelectExpiaryThisMonth);
-		rs.last();
-		int intExpiaryThisMonth = rs.getRow();
-    	
-    	dashboardController.setExpiaryThisMonth(String.valueOf(intExpiaryThisMonth));
-    	
-    	// select price and sold
-    	String selectPriceAndSold = "SELECT `price` , `sold` FROM `medicines`";
-    	rs=state.executeQuery(selectPriceAndSold);
-    	int price, sold = 0;
-    	int totalSales = 0;
-    	
-    	while(rs.next()) {
-    		price = rs.getInt("price");
-    		sold = rs.getInt("sold");
-    		totalSales += (price * sold);
-    	}
-    	dashboardController.setTotalSales(String.valueOf(totalSales));
+			String strSelectSimilarCompanies = "SELECT DISTINCT `company` FROM `medicines`";
+			rs=state.executeQuery(strSelectSimilarCompanies);
+			rs.last();
+			int intSimilarCompanies = rs.getRow();
+			
+			dashboardController.setSimilarCompanies(String.valueOf(intSimilarCompanies));
+			
+			Date date = new Date();
+			DateFormat dateFormate = new SimpleDateFormat("yyyy/MM/dd");
+			String dateTimt = dateFormate.format(date);
+			dateTimt = dateTimt.replace("/","-");
+			
+			// select medicines out of stock
+			String strSelectOutOfStock = "SELECT * FROM `medicines` WHERE `dateexpiary` < '"+dateTimt+"'";
+			rs=state.executeQuery(strSelectOutOfStock);
+			rs.last();
+			int intOutOfStock = rs.getRow();
+			
+			dashboardController.setOutOfStock(String.valueOf(intOutOfStock));
+			
+			//select expiary this month
+			String strFullDate = dateFormate.format(date);
+			String strYear = strFullDate.substring(0, 4);
+			int intYear = Integer.parseInt(strYear);
+			
+			GregorianCalendar gc = new GregorianCalendar(intYear, date.getMonth(), 0);
+			date = gc.getTime();
+			String gcTimeMore = dateFormate.format(date);
+			gcTimeMore = gcTimeMore.replace("/","-");
+			
+			GregorianCalendar gc2 = new GregorianCalendar(intYear, date.getMonth()+2, 0);
+			date = gc2.getTime();
+			String gcTimeLessOrEqual = dateFormate.format(date);
+			gcTimeLessOrEqual = gcTimeLessOrEqual.replace("/","-");
+			
+			
+			
+			String strSelectExpiaryThisMonth = "SELECT * FROM `medicines` WHERE (`dateexpiary` > '"+gcTimeMore+"') AND (`dateexpiary` <= '"+gcTimeLessOrEqual+"')"; 
+			rs=state.executeQuery(strSelectExpiaryThisMonth);
+			rs.last();
+			int intExpiaryThisMonth = rs.getRow();
+			
+			dashboardController.setExpiaryThisMonth(String.valueOf(intExpiaryThisMonth));
+			
+			// select price and sold
+			String selectPriceAndSold = "SELECT `price` , `sold` FROM `medicines`";
+			rs=state.executeQuery(selectPriceAndSold);
+			int price, sold = 0;
+			totalSales = 0;
+			
+			while(rs.next()) {
+				price = rs.getInt("price");
+				sold = rs.getInt("sold");
+				totalSales += (price * sold);
+			}
+			dashboardController.setTotalSales(String.valueOf(totalSales));
+		} catch (SQLException e) {
+			ErrorServerNotFound err = new ErrorServerNotFound();
+			err.errException(e);
+			return;
+		}
     	
     	borderPaneContent.setCenter(root);
     }

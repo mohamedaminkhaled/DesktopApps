@@ -35,71 +35,90 @@ public class SearchMedicineController {
     String key = null;
     String companyName;
     
-    void getMedicines(String strSelect) throws SQLException, IOException {
+    void getMedicines(String strSelect) throws IOException {
     	
     	Statement state;
 		ResultSet rs;
 				
-		Connection conn=DBinfo.connDB();
-		state=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-				ResultSet.CONCUR_READ_ONLY);
-		rs=state.executeQuery(strSelect);
-		
-		while(rs.next()) {
-			FXMLLoader loaderMedicineCard = new FXMLLoader(getClass().getResource("/UserPages/MedicineCard.fxml"));
-	    	Parent root = loaderMedicineCard.load();
-
-	    	MedicineCardController medicineCardController = loaderMedicineCard.getController();
+		try {
+			Connection conn=DBinfo.connDB();
+			state=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_READ_ONLY);
+			rs=state.executeQuery(strSelect);
 			
-			medicineCardController.setMedicineCard(rs.getString("id"));
-			flowPaneContent.getChildren().addAll(root);
+			while(rs.next()) {
+				FXMLLoader loaderMedicineCard = new FXMLLoader(getClass().getResource("/UserPages/MedicineCard.fxml"));
+				Parent root = loaderMedicineCard.load();
+
+				MedicineCardController medicineCardController = loaderMedicineCard.getController();
+				
+				medicineCardController.setMedicineCard(rs.getString("id"));
+				
+				flowPaneContent.getChildren().addAll(root);
+			}
+		} catch (SQLException e) {
+			ErrorServerNotFound err = new ErrorServerNotFound();
+			err.errException(e);
+			return;
 		} 
     }
     
-    void getCompanies(String strSelectSimilarCompanies) throws SQLException, IOException {
+    void getCompanies(String strSelectSimilarCompanies) throws IOException {
     	
     	Statement state;
 		ResultSet rs;
 				
-		Connection conn=DBinfo.connDB();
-		state=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-				ResultSet.CONCUR_READ_ONLY);
-		rs=state.executeQuery(strSelectSimilarCompanies);
-		
-		while(rs.next()) {
-			FXMLLoader loaderCompanyCard = new FXMLLoader(getClass().getResource("/UserPages/CompanyCards.fxml"));
-	    	Parent root = loaderCompanyCard.load();
-
-	    	CompanyCardController companyCardController = loaderCompanyCard.getController();
+		try {
+			Connection conn=DBinfo.connDB();
+			state=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_READ_ONLY);
+			rs=state.executeQuery(strSelectSimilarCompanies);
 			
-	    	companyCardController.setCompanyCard(rs.getString("company"));
-			flowPaneContent.getChildren().addAll(root);
+			while(rs.next()) {
+				FXMLLoader loaderCompanyCard = new FXMLLoader(getClass().getResource("/UserPages/CompanyCards.fxml"));
+				Parent root = loaderCompanyCard.load();
+
+				CompanyCardController companyCardController = loaderCompanyCard.getController();
+				
+				companyCardController.setCompanyCard(rs.getString("company"));
+				flowPaneContent.getChildren().addAll(root);
+			}
+		} catch (SQLException e) {
+			ErrorServerNotFound err = new ErrorServerNotFound();
+			err.errException(e);
+			return;
 		} 
     }
     
-    void getMedicineSales(String strSelectOutOfStock) throws SQLException, IOException {
+    void getMedicineSales(String strSelectOutOfStock) throws IOException {
     	
     	Statement state;
 		ResultSet rs;
 				
-		Connection conn=DBinfo.connDB();
-		state=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-				ResultSet.CONCUR_READ_ONLY);
-		rs=state.executeQuery(strSelectOutOfStock);
-		
-		while(rs.next()) {
-			FXMLLoader loaderSalesCard = new FXMLLoader(getClass().getResource("/UserPages/SalesCard.fxml"));
-	    	Parent root = loaderSalesCard.load();
-
-	    	SalesCardController salesCardController = loaderSalesCard.getController();
+		try {
+			Connection conn=DBinfo.connDB();
+			state=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_READ_ONLY);
+			rs=state.executeQuery(strSelectOutOfStock);
 			
-	    	salesCardController.setSalesCard(rs.getString("id"));
-			flowPaneContent.getChildren().addAll(root);
+			while(rs.next()) {
+				FXMLLoader loaderSalesCard = new FXMLLoader(getClass().getResource("/UserPages/SalesCard.fxml"));
+				Parent root = loaderSalesCard.load();
+
+				SalesCardController salesCardController = loaderSalesCard.getController();
+				
+				salesCardController.setSalesCard(rs.getString("id"));
+				flowPaneContent.getChildren().addAll(root);
+			}
+		} catch (SQLException e) {
+			ErrorServerNotFound err = new ErrorServerNotFound();
+			err.errException(e);
+			return;
 		} 
     }
 
     @FXML
-    void serchMedicine(MouseEvent event) throws SQLException, IOException {
+    void serchMedicine(MouseEvent event) throws IOException {
     	String searchWord = tfSearch.getText();
     	flowPaneContent.getChildren().clear();
     	
